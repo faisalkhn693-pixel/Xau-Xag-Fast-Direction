@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>XAU XAG Strategy</title>
+<title>XAU 6-Point Strategy</title>
 
 <style>
 
@@ -36,155 +36,72 @@ margin-bottom:12px;
 
 
 /* =========================================================
-MARKET REGIME
+LOCATION
 ========================================================= */
 
-.regime-box{
+.location-box{
 margin-bottom:10px;
 background:#fff;
 border-radius:12px;
-padding:9px;
+padding:10px 9px;
 box-shadow:0 2px 9px rgba(0,0,0,.10);
 border:1px solid #ddd;
 }
 
-.regime-title{
+.location-title{
 text-align:center;
 font-size:13px;
 font-weight:950;
-margin-bottom:8px;
+margin-bottom:7px;
 }
 
-.regime-columns{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:7px;
-}
-
-.regime-card{
-background:#f7f7f7;
-border-radius:10px;
-padding:7px;
-border:1px solid #ddd;
-}
-
-.regime-header{
+.location-text{
 text-align:center;
-font-size:15px;
-font-weight:950;
-margin-bottom:6px;
-}
-
-.regime-label{
-font-size:8px;
-font-weight:950;
-margin:5px 0 3px;
-text-align:center;
-}
-
-.regime-buttons{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:3px;
-}
-
-.regime-buttons.two{
-grid-template-columns:1fr 1fr;
-}
-
-.regime-buttons button{
-padding:7px 2px;
-font-size:8px;
-}
-
-button.regime-selected.tre{
-background:#c9f2d3!important;
-color:#08752f!important;
-border:2px solid #08752f!important;
-}
-
-button.regime-selected.ran{
-background:#dcecff!important;
-color:#245a91!important;
-border:2px solid #245a91!important;
-}
-
-button.regime-selected.trn{
-background:#fff0c9!important;
-color:#765600!important;
-border:2px solid #d59b00!important;
-}
-
-button.regime-selected.bullish{
-background:#c9f2d3!important;
-color:#08752f!important;
-border:2px solid #08752f!important;
-}
-
-button.regime-selected.bearish{
-background:#ffd1d1!important;
-color:#a51b1b!important;
-border:2px solid #c62828!important;
-}
-
-button.regime-selected.neutral{
-background:#cfcfcf!important;
-color:#333!important;
-border:2px solid #666!important;
-}
-
-button.regime-selected.respecting{
-background:#c9f2d3!important;
-color:#08752f!important;
-border:2px solid #08752f!important;
-}
-
-button.regime-selected.crossing{
-background:#fff0c9!important;
-color:#765600!important;
-border:2px solid #d59b00!important;
-}
-
-button.regime-selected.unclear{
-background:#cfcfcf!important;
-color:#333!important;
-border:2px solid #666!important;
-}
-
-.regime-status{
-margin-top:6px;
-background:#eee;
-border-radius:7px;
-padding:6px 3px;
-text-align:center;
-font-size:8px;
-font-weight:900;
-color:#666;
-}
-
-.regime-status.tre{
-background:#d9f5df;
-color:#145c2c;
-}
-
-.regime-status.ran{
-background:#e3edf8;
-color:#244b70;
-}
-
-.regime-status.trn{
-background:#fff0cc;
-color:#765600;
+font-size:10px;
+font-weight:850;
+line-height:1.6;
 }
 
 
 /* =========================================================
-COLUMNS
+ENTRY RULES
+========================================================= */
+
+.entry-rules{
+margin-bottom:10px;
+background:#fff;
+border-radius:12px;
+padding:10px 9px;
+box-shadow:0 2px 9px rgba(0,0,0,.10);
+border:1px solid #ddd;
+}
+
+.entry-rules-title{
+text-align:center;
+font-size:13px;
+font-weight:950;
+margin-bottom:7px;
+}
+
+.entry-rule{
+font-size:10px;
+font-weight:850;
+line-height:1.45;
+padding:4px 0;
+}
+
+.entry-rule-number{
+font-weight:950;
+}
+
+
+/* =========================================================
+XAU CARD
 ========================================================= */
 
 .columns{
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr;
 gap:8px;
 }
 
@@ -265,6 +182,11 @@ color:#333!important;
 border:2px solid #666!important;
 box-shadow:0 0 0 2px rgba(80,80,80,.15);
 }
+
+
+/* =========================================================
+TOTAL
+========================================================= */
 
 .total{
 margin-top:7px;
@@ -348,7 +270,7 @@ font-weight:950;
 
 
 /* =========================================================
-MAIN DECISION
+MAIN RESULT
 ========================================================= */
 
 .result{
@@ -378,11 +300,6 @@ background:#fff0cc;
 color:#765600;
 }
 
-.result.info{
-background:#e3edf8;
-color:#244b70;
-}
-
 .result .main{
 font-size:14px;
 font-weight:950;
@@ -399,240 +316,6 @@ margin-top:6px;
 font-size:9px;
 font-weight:800;
 opacity:.85;
-}
-
-
-/* =========================================================
-LEARNING SYSTEM
-========================================================= */
-
-.learning{
-margin-top:10px;
-background:#fff;
-border-radius:12px;
-padding:10px 9px;
-box-shadow:0 2px 9px rgba(0,0,0,.10);
-border:1px solid #ddd;
-}
-
-.learning-title{
-text-align:center;
-font-size:13px;
-font-weight:950;
-margin-bottom:4px;
-}
-
-.learning-subtitle{
-text-align:center;
-color:#666;
-font-size:9px;
-font-weight:800;
-line-height:1.35;
-margin-bottom:8px;
-}
-
-.learning-current{
-background:#f1f1f1;
-border-radius:9px;
-padding:8px;
-text-align:center;
-font-size:10px;
-font-weight:900;
-line-height:1.5;
-}
-
-.entry-form{
-margin-top:7px;
-background:#f7f7f7;
-border:1px solid #ddd;
-border-radius:9px;
-padding:8px;
-}
-
-.entry-title{
-text-align:center;
-font-size:11px;
-font-weight:950;
-margin-bottom:7px;
-}
-
-.entry-label{
-display:block;
-font-size:9px;
-font-weight:900;
-margin:5px 0 3px;
-}
-
-.entry-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:5px;
-}
-
-.entry-select,
-.entry-input{
-width:100%;
-border:1px solid #ccc;
-background:#fff;
-color:#222;
-border-radius:7px;
-padding:8px 5px;
-font-size:10px;
-font-weight:800;
-}
-
-.entry-direction button,
-.entry-pair button{
-padding:8px 2px;
-}
-
-.entry-pair button.active,
-.entry-direction button.active{
-border:2px solid #244b70;
-background:#e3edf8;
-color:#244b70;
-}
-
-.start-entry{
-margin-top:7px;
-width:100%;
-background:#d9f5df;
-color:#145c2c;
-border-color:#a7dcb2;
-}
-
-.cancel-entry{
-margin-top:5px;
-width:100%;
-}
-
-.learning-buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:5px;
-margin-top:7px;
-}
-
-.learning-buttons button{
-padding:9px 3px;
-font-size:10px;
-}
-
-.record{
-background:#e3edf8;
-color:#244b70;
-border-color:#b5cbe0;
-}
-
-.win{
-background:#d9f5df;
-color:#145c2c;
-border-color:#a7dcb2;
-}
-
-.loss{
-background:#ffdede;
-color:#9d1717;
-border-color:#e7aaaa;
-}
-
-.learning-stats{
-margin-top:8px;
-background:#f7f7f7;
-border-radius:9px;
-padding:8px;
-font-size:9px;
-font-weight:850;
-line-height:1.55;
-}
-
-.stat-row{
-display:flex;
-justify-content:space-between;
-border-bottom:1px solid #ddd;
-padding:3px 0;
-}
-
-.stat-row:last-child{
-border-bottom:none;
-}
-
-.learning-history{
-margin-top:8px;
-max-height:350px;
-overflow-y:auto;
-}
-
-.history-item{
-background:#f8f8f8;
-border:1px solid #ddd;
-border-radius:8px;
-padding:7px;
-margin-bottom:5px;
-font-size:8.5px;
-font-weight:800;
-line-height:1.45;
-}
-
-.history-win{
-border-left:4px solid #08752f;
-}
-
-.history-loss{
-border-left:4px solid #c62828;
-}
-
-.history-pending{
-border-left:4px solid #d59b00;
-}
-
-.history-entry{
-background:#eeeeee;
-border-radius:6px;
-padding:5px;
-margin-top:5px;
-}
-
-.changes{
-margin-top:5px;
-background:#fff4d6;
-border-radius:6px;
-padding:5px;
-}
-
-.change-item{
-border-bottom:1px solid #ddd;
-padding:2px 0;
-}
-
-.change-item:last-child{
-border-bottom:none;
-}
-
-.history-buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:4px;
-margin-top:5px;
-}
-
-.history-buttons button{
-padding:5px;
-font-size:8px;
-}
-
-.delete-history{
-background:#eee;
-color:#555;
-}
-
-.clear-history{
-display:block;
-margin:8px auto 0;
-padding:7px 15px;
-font-size:9px;
-background:#fff;
-border:1px solid #bbb;
 }
 
 
@@ -659,10 +342,6 @@ padding:6px;
 
 h1{
 font-size:21px;
-}
-
-.columns{
-gap:5px;
 }
 
 .card{
@@ -699,20 +378,16 @@ font-size:11px;
 font-size:13px;
 }
 
+.location-box,
+.entry-rules,
 .rules{
 padding:9px 8px;
 }
 
+.location-text,
+.entry-rule,
 .rule{
 font-size:9px;
-}
-
-.regime-buttons button{
-font-size:7.5px;
-}
-
-.regime-card{
-padding:5px;
 }
 
 }
@@ -722,415 +397,292 @@ padding:5px;
 
 <body>
 
-<h1>6-Point Strategy Score</h1>
+<h1>6-Point XAU Strategy Score</h1>
 
 <div class="subtitle">
-XAU & XAG • +4 / −4 = Eligibility
++4 / −4 = Eligibility
 </div>
 
 
 <!-- =========================================================
-MARKET REGIME
+LOCATION
 ========================================================= -->
 
-<div class="regime-box">
+<div class="location-box">
 
-<div class="regime-title">
-MARKET REGIME
+<div class="location-title">
+LOCATION IS MOST IMPORTANT
 </div>
 
-<div class="regime-columns">
-
-
-<!-- ================= XAU REGIME ================= -->
-
-<div class="regime-card">
-
-<div class="regime-header">
-XAU
-</div>
-
-<div class="regime-label">
-REGIME
-</div>
-
-<div class="regime-buttons">
-
-<button id="xauTRE"
-onclick="selectRegime('xau','TRE')">
-TRE
-</button>
-
-<button id="xauRAN"
-onclick="selectRegime('xau','RAN')">
-RAN
-</button>
-
-<button id="xauTRN"
-onclick="selectRegime('xau','TRN')">
-TRN
-</button>
-
-</div>
-
-
-<div class="regime-label">
-STRUCTURE
-</div>
-
-<div class="regime-buttons">
-
-<button id="xauBullish"
-onclick="selectStructure('xau','BULLISH')">
-BULL
-</button>
-
-<button id="xauBearish"
-onclick="selectStructure('xau','BEARISH')">
-BEAR
-</button>
-
-<button id="xauNeutral"
-onclick="selectStructure('xau','NEUTRAL')">
-NEUTRAL
-</button>
-
-</div>
-
-
-<div class="regime-label">
-VWAP BEHAVIOR
-</div>
-
-<div class="regime-buttons">
-
-<button id="xauRespecting"
-onclick="selectVWAP('xau','RESPECTING')">
-RESPECT
-</button>
-
-<button id="xauCrossing"
-onclick="selectVWAP('xau','CROSSING')">
-CROSSING
-</button>
-
-<button id="xauUnclear"
-onclick="selectVWAP('xau','UNCLEAR')">
-UNCLEAR
-</button>
-
-</div>
-
-
-<div id="xauRegimeStatus"
-class="regime-status">
-REGIME NOT SELECTED
-</div>
-
-</div>
-
-
-<!-- ================= XAG REGIME ================= -->
-
-<div class="regime-card">
-
-<div class="regime-header">
-XAG
-</div>
-
-<div class="regime-label">
-REGIME
-</div>
-
-<div class="regime-buttons">
-
-<button id="xagTRE"
-onclick="selectRegime('xag','TRE')">
-TRE
-</button>
-
-<button id="xagRAN"
-onclick="selectRegime('xag','RAN')">
-RAN
-</button>
-
-<button id="xagTRN"
-onclick="selectRegime('xag','TRN')">
-TRN
-</button>
-
-</div>
-
-
-<div class="regime-label">
-STRUCTURE
-</div>
-
-<div class="regime-buttons">
-
-<button id="xagBullish"
-onclick="selectStructure('xag','BULLISH')">
-BULL
-</button>
-
-<button id="xagBearish"
-onclick="selectStructure('xag','BEARISH')">
-BEAR
-</button>
-
-<button id="xagNeutral"
-onclick="selectStructure('xag','NEUTRAL')">
-NEUTRAL
-</button>
-
-</div>
-
-
-<div class="regime-label">
-VWAP BEHAVIOR
-</div>
-
-<div class="regime-buttons">
-
-<button id="xagRespecting"
-onclick="selectVWAP('xag','RESPECTING')">
-RESPECT
-</button>
-
-<button id="xagCrossing"
-onclick="selectVWAP('xag','CROSSING')">
-CROSSING
-</button>
-
-<button id="xagUnclear"
-onclick="selectVWAP('xag','UNCLEAR')">
-UNCLEAR
-</button>
-
-</div>
-
-
-<div id="xagRegimeStatus"
-class="regime-status">
-REGIME NOT SELECTED
-</div>
-
-</div>
-
+<div class="location-text">
+W-VAH • D-VAH • BETWEEN BAND 1 + VAH •
+BETWEEN VAL + BAND 1 • W • D-VAL • W-VAL
 </div>
 
 </div>
 
 
 <!-- =========================================================
-XAU / XAG SIX POINTS
+ENTRY RULES
+========================================================= -->
+
+<div class="entry-rules">
+
+<div class="entry-rules-title">
+ENTRY RULES
+</div>
+
+<div class="entry-rule">
+<span class="entry-rule-number">1:</span>
+Use VWAP Only If Trend Is Confirmed
+(e.g: Price At VWAP + −5 Points + CVD V, Strong)
+</div>
+
+<div class="entry-rule">
+<span class="entry-rule-number">2:</span>
+Price Must Touch Location Properly
+</div>
+
+<div class="entry-rule">
+<span class="entry-rule-number">3:</span>
+Only After That TRD Is Accepted
+(+ Study This One More)
+</div>
+
+<div class="entry-rule">
+<span class="entry-rule-number">4:</span>
+After TRD Price Must Come To Nearby Entry Point,
+Any Suitable Point Only Then Entry,
+Otherwise Watch Only.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+XAU SIX POINTS
 ========================================================= -->
 
 <div class="columns">
 
-
-<!-- ================= XAU ================= -->
-
 <div class="card">
 
-<div class="header">XAU</div>
+<div class="header">
+XAU
+</div>
+
+
+<!-- POINT 1 -->
 
 <div class="point">
-<div class="point-number">POINT 1</div>
+
+<div class="point-number">
+POINT 1
+</div>
+
 <div class="point-name">
 W-POC formed upwards / downwards
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',0,1)">+1</button>
-<button onclick="choose(this,'xau',0,-1)">−1</button>
-<button onclick="choose(this,'xau',0,0)">0</button>
-</div>
+
+<button onclick="choose(this,0,1)">
++1
+</button>
+
+<button onclick="choose(this,0,-1)">
+−1
+</button>
+
+<button onclick="choose(this,0,0)">
+0
+</button>
+
 </div>
 
+</div>
+
+
+<!-- POINT 2 -->
+
 <div class="point">
-<div class="point-number">POINT 2</div>
+
+<div class="point-number">
+POINT 2
+</div>
+
 <div class="point-name">
 Weekly VAH / VAL direction
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',1,1)">+1</button>
-<button onclick="choose(this,'xau',1,-1)">−1</button>
-<button onclick="choose(this,'xau',1,0)">0</button>
-</div>
+
+<button onclick="choose(this,1,1)">
++1
+</button>
+
+<button onclick="choose(this,1,-1)">
+−1
+</button>
+
+<button onclick="choose(this,1,0)">
+0
+</button>
+
 </div>
 
+</div>
+
+
+<!-- POINT 3 -->
+
 <div class="point">
-<div class="point-number">POINT 3</div>
+
+<div class="point-number">
+POINT 3
+</div>
+
 <div class="point-name">
 D-POC formed up / down
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',2,1)">+1</button>
-<button onclick="choose(this,'xau',2,-1)">−1</button>
-<button onclick="choose(this,'xau',2,0)">0</button>
-</div>
+
+<button onclick="choose(this,2,1)">
++1
+</button>
+
+<button onclick="choose(this,2,-1)">
+−1
+</button>
+
+<button onclick="choose(this,2,0)">
+0
+</button>
+
 </div>
 
+</div>
+
+
+<!-- POINT 4 -->
+
 <div class="point">
-<div class="point-number">POINT 4</div>
+
+<div class="point-number">
+POINT 4
+</div>
+
 <div class="point-name">
 15m CVD breaks last swing
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',3,1)">+1</button>
-<button onclick="choose(this,'xau',3,-1)">−1</button>
-<button onclick="choose(this,'xau',3,0)">0</button>
-</div>
+
+<button onclick="choose(this,3,1)">
++1
+</button>
+
+<button onclick="choose(this,3,-1)">
+−1
+</button>
+
+<button onclick="choose(this,3,0)">
+0
+</button>
+
 </div>
 
+</div>
+
+
+<!-- POINT 5 -->
+
 <div class="point">
-<div class="point-number">POINT 5</div>
+
+<div class="point-number">
+POINT 5
+</div>
+
 <div class="point-name">
 Weekly + Daily VWAP direction
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',4,1)">+1</button>
-<button onclick="choose(this,'xau',4,-1)">−1</button>
-<button onclick="choose(this,'xau',4,0)">0</button>
-</div>
+
+<button onclick="choose(this,4,1)">
++1
+</button>
+
+<button onclick="choose(this,4,-1)">
+−1
+</button>
+
+<button onclick="choose(this,4,0)">
+0
+</button>
+
 </div>
 
+</div>
+
+
+<!-- POINT 6 -->
+
 <div class="point">
-<div class="point-number">POINT 6</div>
+
+<div class="point-number">
+POINT 6
+</div>
+
 <div class="point-name">
 Daily VAH / VAL direction
 </div>
 
 <div class="buttons">
-<button onclick="choose(this,'xau',5,1)">+1</button>
-<button onclick="choose(this,'xau',5,-1)">−1</button>
-<button onclick="choose(this,'xau',5,0)">0</button>
+
+<button onclick="choose(this,5,1)">
++1
+</button>
+
+<button onclick="choose(this,5,-1)">
+−1
+</button>
+
+<button onclick="choose(this,5,0)">
+0
+</button>
+
 </div>
+
 </div>
+
+
+<!-- TOTAL -->
 
 <div class="total">
 
 <div id="xauScore" class="score">
-<span class="positive">+0</span>
+
+<span class="positive">
++0
+</span>
+
 &nbsp;&nbsp;
-<span class="negative">−0</span>
+
+<span class="negative">
+−0
+</span>
+
 </div>
+
 
 <div id="xauStatus" class="status">
 0 / 6 SELECTED
 </div>
 
+
 <div id="xauEligibility" class="eligibility">
-NOT ELIGIBLE
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= XAG ================= -->
-
-<div class="card">
-
-<div class="header">XAG</div>
-
-<div class="point">
-<div class="point-number">POINT 1</div>
-<div class="point-name">
-W-POC formed upwards / downwards
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',0,1)">+1</button>
-<button onclick="choose(this,'xag',0,-1)">−1</button>
-<button onclick="choose(this,'xag',0,0)">0</button>
-</div>
-</div>
-
-<div class="point">
-<div class="point-number">POINT 2</div>
-<div class="point-name">
-Weekly VAH / VAL direction
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',1,1)">+1</button>
-<button onclick="choose(this,'xag',1,-1)">−1</button>
-<button onclick="choose(this,'xag',1,0)">0</button>
-</div>
-</div>
-
-<div class="point">
-<div class="point-number">POINT 3</div>
-<div class="point-name">
-D-POC formed up / down
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',2,1)">+1</button>
-<button onclick="choose(this,'xag',2,-1)">−1</button>
-<button onclick="choose(this,'xag',2,0)">0</button>
-</div>
-</div>
-
-<div class="point">
-<div class="point-number">POINT 4</div>
-<div class="point-name">
-15m CVD breaks last swing
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',3,1)">+1</button>
-<button onclick="choose(this,'xag',3,-1)">−1</button>
-<button onclick="choose(this,'xag',3,0)">0</button>
-</div>
-</div>
-
-<div class="point">
-<div class="point-number">POINT 5</div>
-<div class="point-name">
-Weekly + Daily VWAP direction
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',4,1)">+1</button>
-<button onclick="choose(this,'xag',4,-1)">−1</button>
-<button onclick="choose(this,'xag',4,0)">0</button>
-</div>
-</div>
-
-<div class="point">
-<div class="point-number">POINT 6</div>
-<div class="point-name">
-Daily VAH / VAL direction
-</div>
-
-<div class="buttons">
-<button onclick="choose(this,'xag',5,1)">+1</button>
-<button onclick="choose(this,'xag',5,-1)">−1</button>
-<button onclick="choose(this,'xag',5,0)">0</button>
-</div>
-</div>
-
-<div class="total">
-
-<div id="xagScore" class="score">
-<span class="positive">+0</span>
-&nbsp;&nbsp;
-<span class="negative">−0</span>
-</div>
-
-<div id="xagStatus" class="status">
-0 / 6 SELECTED
-</div>
-
-<div id="xagEligibility" class="eligibility">
 NOT ELIGIBLE
 </div>
 
@@ -1153,12 +705,12 @@ PERMANENT TRADING RULES
 
 <div class="rule">
 <span class="rule-number">1:</span>
-ONE TRADE EACH SETUP — WHICHEVER PAIR SEEMS SUITABLE
+ONE TRADE EACH SETUP
 </div>
 
 <div class="rule">
 <span class="rule-number">2:</span>
-MAX TRADEABLE SETUPS: 3
+MAX TRADEABLE SETUPS: 2
 </div>
 
 <div class="rule">
@@ -1169,11 +721,6 @@ TRADE EACH NEW +4 / −4
 <div class="rule">
 <span class="rule-number">4:</span>
 TARGET 1:3
-</div>
-
-<div class="rule">
-<span class="rule-number">5:</span>
-TRE = VWAP CONTINUATION • RAN = LIQUIDITY REJECTION • TRN = REVERSAL WATCH
 </div>
 
 </div>
@@ -1190,190 +737,17 @@ DON'T OVERTRADE
 </div>
 
 <div class="sub">
-SELECT MARKET REGIME + WAIT FOR A ±4 SIGNAL
+NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL
 </div>
 
 </div>
 
 
 <!-- =========================================================
-LEARNING SYSTEM
+RESET
 ========================================================= -->
 
-<div class="learning">
-
-<div class="learning-title">
-SETUP LEARNING SYSTEM
-</div>
-
-<div class="learning-subtitle">
-Records your exact setup, market regime, structure, VWAP behavior,
-entry pair, entry location and every point change after entry.
-</div>
-
-<div id="learningCurrent" class="learning-current">
-NO SETUP RECORDED
-</div>
-
-
-<div id="entryForm" class="entry-form" style="display:none;">
-
-<div class="entry-title">
-RECORD YOUR ACTUAL ENTRY
-</div>
-
-<label class="entry-label">
-ENTRY PAIR
-</label>
-
-<div class="entry-grid entry-pair">
-
-<button id="entryXAU" onclick="selectEntryPair('XAU')">
-XAU
-</button>
-
-<button id="entryXAG" onclick="selectEntryPair('XAG')">
-XAG
-</button>
-
-</div>
-
-
-<label class="entry-label">
-ENTRY DIRECTION
-</label>
-
-<div class="entry-grid entry-direction">
-
-<button id="entryBUY" onclick="selectEntryDirection('BUY')">
-BUY
-</button>
-
-<button id="entrySELL" onclick="selectEntryDirection('SELL')">
-SELL
-</button>
-
-</div>
-
-
-<label class="entry-label">
-ENTRY FROM
-</label>
-
-<select id="entryFrom" class="entry-select">
-
-<option value="">
-SELECT ENTRY POINT
-</option>
-
-<option value="Daily VWAP">
-Daily VWAP
-</option>
-
-<option value="Weekly VAH">
-Weekly VAH
-</option>
-
-<option value="Weekly VAL">
-Weekly VAL
-</option>
-
-<option value="Daily VAH">
-Daily VAH
-</option>
-
-<option value="Daily VAL">
-Daily VAL
-</option>
-
-<option value="W-POC">
-W-POC
-</option>
-
-<option value="D-POC">
-D-POC
-</option>
-
-<option value="Other">
-Other
-</option>
-
-</select>
-
-
-<label class="entry-label">
-ENTRY PRICE
-</label>
-
-<input
-id="entryPrice"
-class="entry-input"
-type="number"
-step="any"
-placeholder="Enter price"
-/>
-
-
-<button
-class="start-entry"
-onclick="startRecordedTrade()">
-
-✓ START RECORDING THIS TRADE
-
-</button>
-
-<button
-class="cancel-entry"
-onclick="cancelEntryForm()">
-
-CANCEL
-
-</button>
-
-</div>
-
-
-<div id="recordButtonArea" class="learning-buttons">
-
-<button class="record" onclick="openEntryForm()">
-RECORD CURRENT SETUP
-</button>
-
-<button onclick="cancelPendingSetup()">
-CANCEL
-</button>
-
-</div>
-
-
-<div id="outcomeButtons" class="learning-buttons" style="display:none;">
-
-<button class="win" onclick="finishPendingSetup('WIN')">
-✓ WIN — 1:3
-</button>
-
-<button class="loss" onclick="finishPendingSetup('LOSS')">
-✕ LOSS — 1R
-</button>
-
-</div>
-
-
-<div id="learningStats" class="learning-stats">
-No completed trades recorded yet.
-</div>
-
-<div id="learningHistory" class="learning-history">
-</div>
-
-<button class="clear-history" onclick="clearLearningHistory()">
-CLEAR LEARNING DATA
-</button>
-
-</div>
-
-
-<button class="reset" onclick="resetAll">
+<button class="reset" onclick="resetAll()">
 RESET
 </button>
 
@@ -1386,13 +760,7 @@ STORAGE
 ========================================================= */
 
 const STORAGE_KEY =
-"xau_xag_strategy_calculator_v2";
-
-const LEARNING_KEY =
-"xau_xag_strategy_learning_v2";
-
-const PENDING_KEY =
-"xau_xag_strategy_pending_v2";
+"xau_strategy_calculator_v3";
 
 
 /* =========================================================
@@ -1400,73 +768,23 @@ CALCULATOR DATA
 ========================================================= */
 
 let xau=[
-null,null,null,null,null,null
+null,
+null,
+null,
+null,
+null,
+null
 ];
 
-let xag=[
-null,null,null,null,null,null
-];
-
-let eligibilityTimes={
-xauBull:null,
-xauBear:null,
-xagBull:null,
-xagBear:null
-};
-
 
 /* =========================================================
-MARKET REGIME DATA
-========================================================= */
-
-let marketRegime={
-
-xau:{
-regime:null,
-structure:null,
-vwap:null
-},
-
-xag:{
-regime:null,
-structure:null,
-vwap:null
-}
-
-};
-
-
-/* =========================================================
-LEARNING DATA
-========================================================= */
-
-let learningHistory=[];
-
-let pendingSetup=null;
-
-let entryPair=null;
-
-let entryDirection=null;
-
-
-/* =========================================================
-SAVE CALCULATOR STATE
+SAVE STATE
 ========================================================= */
 
 function saveState(){
 
 const state={
-
-xau:xau,
-
-xag:xag,
-
-eligibilityTimes:
-eligibilityTimes,
-
-marketRegime:
-marketRegime
-
+xau:xau
 };
 
 try{
@@ -1488,7 +806,7 @@ console.log(
 
 
 /* =========================================================
-LOAD CALCULATOR STATE
+LOAD STATE
 ========================================================= */
 
 function loadState(){
@@ -1500,7 +818,11 @@ JSON.parse(
 localStorage.getItem(STORAGE_KEY)
 );
 
-if(!saved) return;
+if(!saved){
+
+return;
+
+}
 
 
 if(
@@ -1512,45 +834,6 @@ xau=saved.xau;
 
 }
 
-
-if(
-Array.isArray(saved.xag) &&
-saved.xag.length===6
-){
-
-xag=saved.xag;
-
-}
-
-
-if(saved.eligibilityTimes){
-
-eligibilityTimes={
-...eligibilityTimes,
-...saved.eligibilityTimes
-};
-
-}
-
-
-if(saved.marketRegime){
-
-marketRegime={
-
-xau:{
-...marketRegime.xau,
-...(saved.marketRegime.xau || {})
-},
-
-xag:{
-...marketRegime.xag,
-...(saved.marketRegime.xag || {})
-}
-
-};
-
-}
-
 }catch(e){
 
 console.log(
@@ -1558,450 +841,6 @@ console.log(
 );
 
 }
-
-}
-
-
-/* =========================================================
-SAVE LEARNING
-========================================================= */
-
-function saveLearning(){
-
-try{
-
-localStorage.setItem(
-LEARNING_KEY,
-JSON.stringify(learningHistory)
-);
-
-}catch(e){
-
-console.log(
-"Could not save learning data."
-);
-
-}
-
-}
-
-
-/* =========================================================
-LOAD LEARNING
-========================================================= */
-
-function loadLearning(){
-
-try{
-
-const saved=
-JSON.parse(
-localStorage.getItem(LEARNING_KEY)
-);
-
-if(Array.isArray(saved)){
-
-learningHistory=saved;
-
-}
-
-}catch(e){
-
-console.log(
-"Could not load learning data."
-);
-
-}
-
-}
-
-
-/* =========================================================
-SAVE PENDING SETUP
-========================================================= */
-
-function savePendingSetup(){
-
-try{
-
-if(pendingSetup){
-
-localStorage.setItem(
-PENDING_KEY,
-JSON.stringify(pendingSetup)
-);
-
-}else{
-
-localStorage.removeItem(
-PENDING_KEY
-);
-
-}
-
-}catch(e){
-
-console.log(
-"Could not save pending setup."
-);
-
-}
-
-}
-
-
-/* =========================================================
-LOAD PENDING SETUP
-========================================================= */
-
-function loadPendingSetup(){
-
-try{
-
-const saved=
-JSON.parse(
-localStorage.getItem(PENDING_KEY)
-);
-
-if(saved){
-
-pendingSetup=saved;
-
-entryPair=
-pendingSetup.entryPair ||
-null;
-
-entryDirection=
-pendingSetup.entryDirection ||
-null;
-
-}
-
-}catch(e){
-
-console.log(
-"Could not load pending setup."
-);
-
-}
-
-}
-
-
-/* =========================================================
-REGIME BUTTON HELPERS
-========================================================= */
-
-function clearRegimeButtons(metal){
-
-const ids=[
-
-metal+"TRE",
-metal+"RAN",
-metal+"TRN",
-
-metal+"Bullish",
-metal+"Bearish",
-metal+"Neutral",
-
-metal+"Respecting",
-metal+"Crossing",
-metal+"Unclear"
-
-];
-
-ids.forEach(function(id){
-
-const button=
-document.getElementById(id);
-
-if(button){
-
-button.classList.remove(
-"regime-selected",
-"tre",
-"ran",
-"trn",
-"bullish",
-"bearish",
-"neutral",
-"respecting",
-"crossing",
-"unclear"
-);
-
-}
-
-});
-
-}
-
-
-/* =========================================================
-SELECT MARKET REGIME
-========================================================= */
-
-function selectRegime(
-metal,
-value
-){
-
-marketRegime[metal].regime=value;
-
-const ids=[
-
-metal+"TRE",
-metal+"RAN",
-metal+"TRN"
-
-];
-
-ids.forEach(function(id){
-
-const button=
-document.getElementById(id);
-
-if(button){
-
-button.classList.remove(
-"regime-selected",
-"tre",
-"ran",
-"trn"
-);
-
-}
-
-});
-
-
-const button=
-document.getElementById(
-metal+value
-);
-
-
-if(button){
-
-button.classList.add(
-"regime-selected",
-value.toLowerCase()
-);
-
-}
-
-
-saveState();
-
-update();
-
-}
-
-
-/* =========================================================
-SELECT STRUCTURE
-========================================================= */
-
-function selectStructure(
-metal,
-value
-){
-
-marketRegime[metal].structure=
-value;
-
-
-const ids=[
-
-metal+"Bullish",
-metal+"Bearish",
-metal+"Neutral"
-
-];
-
-
-ids.forEach(function(id){
-
-const button=
-document.getElementById(id);
-
-if(button){
-
-button.classList.remove(
-"regime-selected",
-"bullish",
-"bearish",
-"neutral"
-);
-
-}
-
-});
-
-
-const idMap={
-
-BULLISH:metal+"Bullish",
-BEARISH:metal+"Bearish",
-NEUTRAL:metal+"Neutral"
-
-};
-
-
-const button=
-document.getElementById(
-idMap[value]
-);
-
-
-if(button){
-
-button.classList.add(
-"regime-selected",
-value.toLowerCase()
-);
-
-}
-
-
-saveState();
-
-update();
-
-}
-
-
-/* =========================================================
-SELECT VWAP BEHAVIOR
-========================================================= */
-
-function selectVWAP(
-metal,
-value
-){
-
-marketRegime[metal].vwap=
-value;
-
-
-const ids=[
-
-metal+"Respecting",
-metal+"Crossing",
-metal+"Unclear"
-
-];
-
-
-ids.forEach(function(id){
-
-const button=
-document.getElementById(id);
-
-if(button){
-
-button.classList.remove(
-"regime-selected",
-"respecting",
-"crossing",
-"unclear"
-);
-
-}
-
-});
-
-
-const idMap={
-
-RESPECTING:metal+"Respecting",
-CROSSING:metal+"Crossing",
-UNCLEAR:metal+"Unclear"
-
-};
-
-
-const button=
-document.getElementById(
-idMap[value]
-);
-
-
-if(button){
-
-button.classList.add(
-"regime-selected",
-value.toLowerCase()
-);
-
-}
-
-
-saveState();
-
-update();
-
-}
-
-
-/* =========================================================
-DISPLAY REGIME STATUS
-========================================================= */
-
-function displayRegime(
-metal
-){
-
-const data=
-marketRegime[metal];
-
-const status=
-document.getElementById(
-metal+"RegimeStatus"
-);
-
-
-if(!data.regime){
-
-status.className=
-"regime-status";
-
-status.innerHTML=
-"REGIME NOT SELECTED";
-
-return;
-
-}
-
-
-status.className=
-"regime-status "+
-data.regime.toLowerCase();
-
-
-let text=
-data.regime;
-
-
-if(data.structure){
-
-text+=
-" • "+
-data.structure;
-
-}
-
-
-if(data.vwap){
-
-text+=
-" • "+
-data.vwap;
-
-}
-
-
-status.innerHTML=text;
 
 }
 
@@ -2072,72 +911,27 @@ SELECT POINT
 
 function choose(
 button,
-metal,
 pointIndex,
 value
 ){
 
-let array=
-metal==="xau"
-?xau
-:xag;
+xau[pointIndex]=value;
 
 
-const oldValue=
-array[pointIndex];
-
-
-if(
-pendingSetup &&
-pendingSetup.entryStarted &&
-oldValue!==value
-){
-
-pendingSetup.pointChanges.push({
-
-timestamp:Date.now(),
-
-metal:
-metal==="xau"
-?"XAU"
-:"XAG",
-
-point:
-pointIndex+1,
-
-oldValue:
-oldValue,
-
-newValue:
-value
-
-});
-
-savePendingSetup();
-
-}
-
-
-array[pointIndex]=value;
-
-
-let point=
+const point=
 button.closest(".point");
 
 
 point
 .querySelectorAll("button")
-.forEach(clearButton);
+.forEach(
+clearButton
+);
 
 
 highlightButton(
 button,
 value
-);
-
-
-updateEligibilityTime(
-metal
 );
 
 
@@ -2152,14 +946,17 @@ update();
 CALCULATE SCORE
 ========================================================= */
 
-function calculate(array){
+function calculate(){
 
 let positive=0;
+
 let negative=0;
+
 let selected=0;
 
 
-array.forEach(function(value){
+xau.forEach(
+function(value){
 
 if(value!==null){
 
@@ -2184,7 +981,7 @@ negative++;
 });
 
 
-return {
+return{
 
 positive,
 negative,
@@ -2221,141 +1018,33 @@ return 0;
 
 
 /* =========================================================
-REMEMBER ELIGIBILITY
+DISPLAY XAU
 ========================================================= */
 
-function updateEligibilityTime(metal){
+function displayXAU(data){
 
-const data=
-calculate(
-metal==="xau"
-?xau
-:xag
+const score=
+document.getElementById(
+"xauScore"
 );
 
-
-const now=
-Date.now();
-
-
-if(metal==="xau"){
-
-if(data.positive>=4){
-
-if(
-eligibilityTimes.xauBull===
-null
-){
-
-eligibilityTimes.xauBull=
-now;
-
-}
-
-}else{
-
-eligibilityTimes.xauBull=
-null;
-
-}
-
-
-if(data.negative>=4){
-
-if(
-eligibilityTimes.xauBear===
-null
-){
-
-eligibilityTimes.xauBear=
-now;
-
-}
-
-}else{
-
-eligibilityTimes.xauBear=
-null;
-
-}
-
-}else{
-
-if(data.positive>=4){
-
-if(
-eligibilityTimes.xagBull===
-null
-){
-
-eligibilityTimes.xagBull=
-now;
-
-}
-
-}else{
-
-eligibilityTimes.xagBull=
-null;
-
-}
-
-
-if(data.negative>=4){
-
-if(
-eligibilityTimes.xagBear===
-null
-){
-
-eligibilityTimes.xagBear=
-now;
-
-}
-
-}else{
-
-eligibilityTimes.xagBear=
-null;
-
-}
-
-}
-
-}
-
-
-/* =========================================================
-DISPLAY METAL
-========================================================= */
-
-function displayMetal(
-metal,
-data
-){
-
-let score=
+const status=
 document.getElementById(
-metal+"Score"
+"xauStatus"
 );
 
-
-let status=
+const eligibility=
 document.getElementById(
-metal+"Status"
-);
-
-
-let eligibility=
-document.getElementById(
-metal+"Eligibility"
+"xauEligibility"
 );
 
 
 score.innerHTML=
+
 '<span class="positive">+'+
 data.positive+
-'</span>&nbsp;&nbsp;<span class="negative">−'+
+'</span>&nbsp;&nbsp;'+
+'<span class="negative">−'+
 data.negative+
 '</span>';
 
@@ -2365,7 +1054,7 @@ data.selected+
 " / 6 SELECTED";
 
 
-let dir=
+const dir=
 direction(data);
 
 
@@ -2402,1494 +1091,49 @@ eligibility.innerHTML=
 
 
 /* =========================================================
-FIND NEWEST ELIGIBLE DIRECTION
-========================================================= */
-
-function getNewestEligibleDirection(){
-
-let candidates=[];
-
-
-if(
-eligibilityTimes.xauBull!==null
-){
-
-candidates.push({
-
-metal:"XAU",
-direction:1,
-time:
-eligibilityTimes.xauBull
-
-});
-
-}
-
-
-if(
-eligibilityTimes.xauBear!==null
-){
-
-candidates.push({
-
-metal:"XAU",
-direction:-1,
-time:
-eligibilityTimes.xauBear
-
-});
-
-}
-
-
-if(
-eligibilityTimes.xagBull!==null
-){
-
-candidates.push({
-
-metal:"XAG",
-direction:1,
-time:
-eligibilityTimes.xagBull
-
-});
-
-}
-
-
-if(
-eligibilityTimes.xagBear!==null
-){
-
-candidates.push({
-
-metal:"XAG",
-direction:-1,
-time:
-eligibilityTimes.xagBear
-
-});
-
-}
-
-
-if(candidates.length===0){
-
-return null;
-
-}
-
-
-candidates.sort(
-function(a,b){
-
-return b.time-a.time;
-
-}
-);
-
-
-return candidates[0];
-
-}
-
-
-/* =========================================================
-EXISTING STRONG SETUP RULE
-========================================================= */
-
-function hasRejectionSetup(A,B){
-
-const bullishA=
-A.positive>=5 &&
-A.positive<=6 &&
-B.positive>=4;
-
-
-const bullishB=
-B.positive>=5 &&
-B.positive<=6 &&
-A.positive>=4;
-
-
-if(
-bullishA ||
-bullishB
-){
-
-return {
-
-direction:1,
-valid:true
-
-};
-
-}
-
-
-const bearishA=
-A.negative>=5 &&
-A.negative<=6 &&
-B.negative>=4;
-
-
-const bearishB=
-B.negative>=5 &&
-B.negative<=6 &&
-A.negative>=4;
-
-
-if(
-bearishA ||
-bearishB
-){
-
-return {
-
-direction:-1,
-valid:true
-
-};
-
-}
-
-
-return {
-
-direction:0,
-valid:false
-
-};
-
-}
-
-
-/* =========================================================
-OPPOSITE RULE
-========================================================= */
-
-function hasOppositeSetup(A,B){
-
-const AHasBullish3=
-A.positive>=3;
-
-
-const AHasBearish3=
-A.negative>=3;
-
-
-const BHasBullish3=
-B.positive>=3;
-
-
-const BHasBearish3=
-B.negative>=3;
-
-
-if(
-AHasBullish3 &&
-BHasBearish3
-){
-
-return true;
-
-}
-
-
-if(
-AHasBearish3 &&
-BHasBullish3
-){
-
-return true;
-
-}
-
-
-return false;
-
-}
-
-
-/* =========================================================
-REGIME ALIGNMENT
-========================================================= */
-
-function isRegimeComplete(metal){
-
-const data=
-marketRegime[metal];
-
-return !!(
-data.regime &&
-data.structure &&
-data.vwap
-);
-
-}
-
-
-/* =========================================================
-TREND ALIGNMENT
-========================================================= */
-
-function isTrendAligned(
-metal,
-scoreData
-){
-
-const data=
-marketRegime[metal];
-
-
-const scoreDirection=
-direction(scoreData);
-
-
-if(data.regime!=="TRE"){
-
-return false;
-
-}
-
-
-if(
-!data.structure ||
-data.structure==="NEUTRAL"
-){
-
-return false;
-
-}
-
-
-if(scoreDirection===0){
-
-return false;
-
-}
-
-
-if(
-data.structure==="BULLISH" &&
-scoreDirection===1
-){
-
-return true;
-
-}
-
-
-if(
-data.structure==="BEARISH" &&
-scoreDirection===-1
-){
-
-return true;
-
-}
-
-
-return false;
-
-}
-
-
-/* =========================================================
-SCORE STRENGTH
-========================================================= */
-
-function scoreStrength(data){
-
-return Math.max(
-data.positive,
-data.negative
-);
-
-}
-
-
-/* =========================================================
-TRE HIGHLIGHT
-========================================================= */
-
-function getTREHighlight(
-metal,
-data
-){
-
-const regime=
-marketRegime[metal];
-
-
-if(
-regime.structure==="BULLISH" &&
-data.positive>=4
-){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:1,
-
-message:
-"TREND TRADE — LOOK FOR BUY FROM VWAP",
-
-sub:
-metal.toUpperCase()+
-" BULLISH TRE + POSITIVE SCORE",
-
-small:
-"Trend direction and 6-point direction agree. Use VWAP as the entry location."
-
-};
-
-}
-
-
-if(
-regime.structure==="BEARISH" &&
-data.negative>=4
-){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:-1,
-
-message:
-"TREND TRADE — LOOK FOR SELL FROM VWAP",
-
-sub:
-metal.toUpperCase()+
-" BEARISH TRE + NEGATIVE SCORE",
-
-small:
-"Trend direction and 6-point direction agree. Use VWAP as the entry location."
-
-};
-
-}
-
-
-if(
-regime.structure==="BULLISH" &&
-data.negative>=4
-){
-
-return {
-
-type:"WAIT",
-
-pair:metal.toUpperCase(),
-
-message:
-"TREND CONFLICT",
-
-sub:
-"BULLISH STRUCTURE + NEGATIVE POINTS",
-
-small:
-"Do not force a BUY. Wait for the 6-point direction to align with the TRE structure."
-
-};
-
-}
-
-
-if(
-regime.structure==="BEARISH" &&
-data.positive>=4
-){
-
-return {
-
-type:"WAIT",
-
-pair:metal.toUpperCase(),
-
-message:
-"TREND CONFLICT",
-
-sub:
-"BEARISH STRUCTURE + POSITIVE POINTS",
-
-small:
-"Do not force a SELL. Wait for the 6-point direction to align with the TRE structure."
-
-};
-
-}
-
-
-return {
-
-type:"WAIT",
-
-pair:metal.toUpperCase(),
-
-message:
-"TREND — WAIT FOR ALIGNMENT",
-
-sub:
-"STRUCTURE + ±4 MUST AGREE",
-
-small:
-"When aligned, look for the entry from VWAP."
-
-};
-
-}
-
-
-/* =========================================================
-TRN HIGHLIGHT
-========================================================= */
-
-function getTRNHighlight(
-metal,
-data
-){
-
-const regime=
-marketRegime[metal];
-
-
-/*
-BEARISH STRUCTURE
-VWAP CROSSING
-POSITIVE POINTS
-= POSSIBLE BULLISH REVERSAL
-*/
-
-if(
-regime.structure==="BEARISH" &&
-regime.vwap==="CROSSING" &&
-data.positive>0
-){
-
-if(data.positive>=4){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:1,
-
-message:
-"REVERSAL TRADE — LOOK FOR BUY FROM GOOD LOCATION",
-
-sub:
-"BEARISH STRUCTURE + VWAP CROSSING + STRONG POSITIVE POINTS",
-
-small:
-"Bulls may be taking control. The old bearish structure is being challenged. Look for a good BUY location."
-
-};
-
-}
-
-
-return {
-
-type:"INFO",
-
-pair:metal.toUpperCase(),
-
-direction:1,
-
-message:
-"REVERSAL DEVELOPING — LOOK FOR BUY FROM GOOD LOCATION",
-
-sub:
-"BEARISH STRUCTURE + VWAP CROSSING + POSITIVE POINTS",
-
-small:
-"Positive points are beginning to support the bullish side. Watch whether the positive score strengthens."
-
-};
-
-}
-
-
-/*
-BULLISH STRUCTURE
-VWAP CROSSING
-NEGATIVE POINTS
-= POSSIBLE BEARISH REVERSAL
-*/
-
-if(
-regime.structure==="BULLISH" &&
-regime.vwap==="CROSSING" &&
-data.negative>0
-){
-
-if(data.negative>=4){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:-1,
-
-message:
-"REVERSAL TRADE — LOOK FOR SELL FROM GOOD LOCATION",
-
-sub:
-"BULLISH STRUCTURE + VWAP CROSSING + STRONG NEGATIVE POINTS",
-
-small:
-"Bears may be taking control. The old bullish structure is being challenged. Look for a good SELL location."
-
-};
-
-}
-
-
-return {
-
-type:"INFO",
-
-pair:metal.toUpperCase(),
-
-direction:-1,
-
-message:
-"REVERSAL DEVELOPING — LOOK FOR SELL FROM GOOD LOCATION",
-
-sub:
-"BULLISH STRUCTURE + VWAP CROSSING + NEGATIVE POINTS",
-
-small:
-"Negative points are beginning to support the bearish side. Watch whether the negative score strengthens."
-
-};
-
-}
-
-
-/*
-TRN WITHOUT REVERSAL EVIDENCE
-*/
-
-return {
-
-type:"WAIT",
-
-pair:metal.toUpperCase(),
-
-message:
-"TRN — WAIT",
-
-sub:
-"WATCH FOR OPPOSITE POINTS TO STRENGTHEN",
-
-small:
-"Transition means the existing structure is being challenged. Do not force a reversal without supporting points."
-
-};
-
-}
-
-
-/* =========================================================
-RAN HIGHLIGHT
-========================================================= */
-
-function getRANHighlight(
-metal,
-data
-){
-
-const regime=
-marketRegime[metal];
-
-
-/*
-BEARISH RAN + NEGATIVE SCORE
-*/
-
-if(
-regime.structure==="BEARISH" &&
-data.negative>=4
-){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:1,
-
-message:
-"LOW-SIDE LIQUIDITY SWEEP → BUY NOW",
-
-sub:
-"EXPECT SELL AFTER 5M MAJOR LIQUIDITY HUNT",
-
-small:
-"AVOID VWAP FOR ENTRY. WATCH OUT FOR TRN + STRONG POSITIVE POINTS — IN THIS CASE SELL BECOMES BAD."
-
-};
-
-}
-
-
-/*
-BULLISH RAN + POSITIVE SCORE
-*/
-
-if(
-regime.structure==="BULLISH" &&
-data.positive>=4
-){
-
-return {
-
-type:"GOOD",
-
-pair:metal.toUpperCase(),
-
-direction:-1,
-
-message:
-"HIGH-SIDE LIQUIDITY SWEEP → SELL NOW",
-
-sub:
-"EXPECT BUY AFTER 5M MAJOR LIQUIDITY HUNT",
-
-small:
-"AVOID VWAP FOR ENTRY. WATCH OUT FOR TRN + STRONG NEGATIVE POINTS — IN THIS CASE BUY BECOMES BAD."
-
-};
-
-}
-
-
-/*
-RAN BUT NO ELIGIBLE DIRECTION
-*/
-
-return {
-
-type:"WAIT",
-
-pair:metal.toUpperCase(),
-
-message:
-"RAN — WAIT",
-
-sub:
-"WAIT FOR RANGE SETUP + ±4",
-
-small:
-"Use liquidity rejection at the range extreme. Avoid VWAP as the entry point."
-
-};
-
-}
-
-
-/* =========================================================
-RAN + TRN WARNING
-========================================================= */
-
-function getRANWarning(
-metal,
-data
-){
-
-const regime=
-marketRegime[metal];
-
-
-if(
-regime.structure==="BEARISH" &&
-data.negative>=4
-){
-
-if(
-marketRegime[metal].regime==="TRN" &&
-data.positive>=4
-){
-
-return "SELL BECOMES BAD — STRONG POSITIVE TRN";
-
-}
-
-}
-
-
-if(
-regime.structure==="BULLISH" &&
-data.positive>=4
-){
-
-if(
-marketRegime[metal].regime==="TRN" &&
-data.negative>=4
-){
-
-return "BUY BECOMES BAD — STRONG NEGATIVE TRN";
-
-}
-
-}
-
-
-return null;
-
-}
-
-
-/* =========================================================
-MAIN REGIME DECISION ENGINE
-========================================================= */
-
-function updateRegimeDecision(
-A,
-B
-){
-
-const xau=
-marketRegime.xau;
-
-const xag=
-marketRegime.xag;
-
-
-if(
-!xau.regime ||
-!xag.regime
-){
-
-return null;
-
-}
-
-
-/*
------------------------------------------
-BOTH TRN
------------------------------------------
-*/
-
-if(
-xau.regime==="TRN" &&
-xag.regime==="TRN"
-){
-
-const xauHighlight=
-getTRNHighlight(
-"xau",
-A
-);
-
-
-const xagHighlight=
-getTRNHighlight(
-"xag",
-B
-);
-
-
-const xauReversal=
-A.positive>0 &&
-xau.structure==="BEARISH" &&
-xau.vwap==="CROSSING"
-||
-A.negative>0 &&
-xau.structure==="BULLISH" &&
-xau.vwap==="CROSSING";
-
-
-const xagReversal=
-B.positive>0 &&
-xag.structure==="BEARISH" &&
-xag.vwap==="CROSSING"
-||
-B.negative>0 &&
-xag.structure==="BULLISH" &&
-xag.vwap==="CROSSING";
-
-
-if(xauReversal && !xagReversal){
-
-return xauHighlight;
-
-}
-
-
-if(xagReversal && !xauReversal){
-
-return xagHighlight;
-
-}
-
-
-if(
-xauReversal &&
-xagReversal
-){
-
-if(
-scoreStrength(A)>
-scoreStrength(B)
-){
-
-return xauHighlight;
-
-}
-
-
-if(
-scoreStrength(B)>
-scoreStrength(A)
-){
-
-return xagHighlight;
-
-}
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAU + XAG IN TRANSITION",
-
-sub:
-"WAIT FOR OPPOSITE POINTS TO STRENGTHEN",
-
-small:
-"TRN is a transition state. Wait for clearer reversal evidence."
-
-};
-
-}
-
-
-/*
------------------------------------------
-TRE + TRE
------------------------------------------
-*/
-
-if(
-xau.regime==="TRE" &&
-xag.regime==="TRE"
-){
-
-const xauAligned=
-isTrendAligned(
-"xau",
-A
-);
-
-
-const xagAligned=
-isTrendAligned(
-"xag",
-B
-);
-
-
-if(
-xauAligned &&
-xagAligned
-){
-
-if(
-direction(A)===
-direction(B)
-){
-
-const chosen=
-scoreStrength(A)>=
-scoreStrength(B)
-?"XAU"
-:"XAG";
-
-
-const chosenData=
-chosen==="XAU"
-?A
-:B;
-
-
-return getTREHighlight(
-chosen.toLowerCase(),
-chosenData
-);
-
-}
-
-
-return {
-
-type:"BAD",
-
-message:
-"XAU + XAG TRENDING OPPOSITE",
-
-sub:
-"NO TRADE",
-
-small:
-"Both metals are TRE, but their eligible directions disagree."
-
-};
-
-}
-
-
-if(
-xauAligned &&
-!xagAligned
-){
-
-return getTREHighlight(
-"xau",
-A
-);
-
-}
-
-
-if(
-xagAligned &&
-!xauAligned
-){
-
-return getTREHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"TREND NOT CONFIRMED",
-
-sub:
-"WAIT FOR STRUCTURE + ±4 ALIGNMENT",
-
-small:
-"TRE requires the structure and six-point direction to agree."
-
-};
-
-}
-
-
-/*
------------------------------------------
-TRE + RAN
------------------------------------------
-*/
-
-if(
-xau.regime==="TRE" &&
-xag.regime==="RAN"
-){
-
-if(
-isTrendAligned(
-"xau",
-A
-)
-){
-
-return getTREHighlight(
-"xau",
-A
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAU TRE — WAIT FOR ALIGNMENT",
-
-sub:
-"XAG IS RAN",
-
-small:
-"Do not force the XAG range while XAU has not confirmed its trend direction."
-
-};
-
-}
-
-
-if(
-xag.regime==="TRE" &&
-xau.regime==="RAN"
-){
-
-if(
-isTrendAligned(
-"xag",
-B
-)
-){
-
-return getTREHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAG TRE — WAIT FOR ALIGNMENT",
-
-sub:
-"XAU IS RAN",
-
-small:
-"Do not force the XAU range while XAG has not confirmed its trend direction."
-
-};
-
-}
-
-
-/*
------------------------------------------
-TRE + TRN
------------------------------------------
-*/
-
-if(
-xau.regime==="TRE" &&
-xag.regime==="TRN"
-){
-
-if(
-isTrendAligned(
-"xau",
-A
-)
-){
-
-return getTREHighlight(
-"xau",
-A
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAU TRE — WAIT FOR ALIGNMENT",
-
-sub:
-"XAG IS IN TRANSITION",
-
-small:
-"Do not force XAU until its structure and score agree."
-
-};
-
-}
-
-
-if(
-xag.regime==="TRE" &&
-xau.regime==="TRN"
-){
-
-if(
-isTrendAligned(
-"xag",
-B
-)
-){
-
-return getTREHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAG TRE — WAIT FOR ALIGNMENT",
-
-sub:
-"XAU IS IN TRANSITION",
-
-small:
-"Do not force XAG until its structure and score agree."
-
-};
-
-}
-
-
-/*
------------------------------------------
-RAN + TRN
------------------------------------------
-*/
-
-if(
-xau.regime==="RAN" &&
-xag.regime==="TRN"
-){
-
-return getRANHighlight(
-"xau",
-A
-);
-
-}
-
-
-if(
-xag.regime==="RAN" &&
-xau.regime==="TRN"
-){
-
-return getRANHighlight(
-"xag",
-B
-);
-
-}
-
-
-/*
------------------------------------------
-RAN + RAN
------------------------------------------
-*/
-
-if(
-xau.regime==="RAN" &&
-xag.regime==="RAN"
-){
-
-const xauAction=
-(
-xau.structure==="BEARISH" &&
-A.negative>=4
-) ||
-(
-xau.structure==="BULLISH" &&
-A.positive>=4
-);
-
-
-const xagAction=
-(
-xag.structure==="BEARISH" &&
-B.negative>=4
-) ||
-(
-xag.structure==="BULLISH" &&
-B.positive>=4
-);
-
-
-if(
-xauAction &&
-xagAction
-){
-
-if(
-scoreStrength(A)>
-scoreStrength(B)
-){
-
-return getRANHighlight(
-"xau",
-A
-);
-
-}
-
-
-if(
-scoreStrength(B)>
-scoreStrength(A)
-){
-
-return getRANHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAU + XAG RANGING",
-
-sub:
-"BOTH HAVE VALID RANGE SETUPS",
-
-small:
-"Choose the cleaner liquidity sweep / better location. Do not use VWAP as the RAN entry."
-
-};
-
-}
-
-
-if(xauAction){
-
-return getRANHighlight(
-"xau",
-A
-);
-
-}
-
-
-if(xagAction){
-
-return getRANHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"XAU + XAG RANGING",
-
-sub:
-"REJECTION ONLY",
-
-small:
-"Wait for the appropriate range extreme and ±4 setup. Avoid VWAP for RAN entries."
-
-};
-
-}
-
-
-/*
------------------------------------------
-RAN + UNEXPECTED
------------------------------------------
-*/
-
-if(
-xau.regime==="RAN"
-){
-
-return getRANHighlight(
-"xau",
-A
-);
-
-}
-
-
-if(
-xag.regime==="RAN"
-){
-
-return getRANHighlight(
-"xag",
-B
-);
-
-}
-
-
-return {
-
-type:"WAIT",
-
-message:
-"REGIME NOT CLEAR",
-
-sub:
-"WAIT",
-
-small:
-"Use TRE for VWAP continuation, RAN for liquidity rejection, and TRN for reversal development."
-
-};
-
-}
-
-
-/* =========================================================
 MAIN RESULT
 ========================================================= */
 
-function updateResult(A,B){
+function updateResult(data){
 
 const result=
 document.getElementById(
 "result"
 );
 
-
-const regimeDecision=
-updateRegimeDecision(
-A,
-B
-);
+const dir=
+direction(data);
 
 
-/*
-REGIME LAYER
-*/
-
-if(regimeDecision){
-
-if(
-regimeDecision.type==="GOOD"
-){
+if(dir===1){
 
 result.className=
 "result good";
-
-}else if(
-regimeDecision.type==="BAD"
-){
-
-result.className=
-"result bad";
-
-}else if(
-regimeDecision.type==="INFO"
-){
-
-result.className=
-"result info";
-
-}else{
-
-result.className=
-"result wait";
-
-}
-
-
-const pairText=
-regimeDecision.pair
-?"<br>PAIR: "+regimeDecision.pair
-:"";
 
 
 result.innerHTML=`
 
 <div class="main">
-${regimeDecision.message}
+XAU BULLISH — ELIGIBLE
 </div>
 
 <div class="sub">
-${regimeDecision.sub}
-${pairText}
++${data.positive} POSITIVE POINTS
 </div>
 
 <div class="small">
-${regimeDecision.small}
+Follow the location and entry rules above.
+Do not enter unless TRD is accepted and price reaches a suitable nearby entry point.
 </div>
 
 `;
-
 
 return;
 
 }
 
 
-/*
-OLD CALCULATOR LAYER
-USED ONLY BEFORE REGIMES ARE SELECTED
-*/
-
-let xd=
-direction(A);
-
-let gd=
-direction(B);
-
-
-let oppositeSetup=
-hasOppositeSetup(A,B);
-
-
-if(oppositeSetup){
-
-let newest=
-getNewestEligibleDirection();
-
-
-let newestText=
-"No ±4 direction has been established yet.";
-
-
-if(newest){
-
-newestText=
-"Newest ±4 direction: "+
-newest.metal+
-" "+
-(
-newest.direction===1
-?"BULLISH"
-:"BEARISH"
-)+".";
-
-}
-
+if(dir===-1){
 
 result.className=
 "result bad";
@@ -3898,239 +1142,16 @@ result.className=
 result.innerHTML=`
 
 <div class="main">
-XAU + XAG OPPOSITE
+XAU BEARISH — ELIGIBLE
 </div>
 
 <div class="sub">
-NO TRADE
+−${data.negative} NEGATIVE POINTS
 </div>
 
 <div class="small">
-3 OR MORE OPPOSITE POINTS DETECTED.
-${newestText}
-SELECT TRE/RAN/TRN ABOVE FOR REGIME FILTERING.
-</div>
-
-`;
-
-return;
-
-}
-
-
-let rejectionSetup=
-hasRejectionSetup(A,B);
-
-
-if(
-rejectionSetup.valid &&
-xd===rejectionSetup.direction &&
-gd===rejectionSetup.direction
-){
-
-result.className=
-"result good";
-
-
-result.innerHTML=`
-
-<div class="main">
-XAU + XAG
-${
-rejectionSetup.direction===1
-?"BULLISH"
-:"BEARISH"
-}
-</div>
-
-<div class="sub">
-ENTER ON REJECTION FROM ANY NEAREST VALID POINT
-</div>
-
-<div class="small">
-Strong confirmation: one metal has ±5 or better and the other has at least ±4.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-xd===1 &&
-gd===1
-){
-
-result.className=
-"result good";
-
-
-result.innerHTML=`
-
-<div class="main">
-XAU + XAG BULLISH
-</div>
-
-<div class="sub">
-D-VWAP IS THE BEST ENTRY
-</div>
-
-<div class="small">
-Wait for the D-VWAP entry rather than forcing a distant entry.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-xd===-1 &&
-gd===-1
-){
-
-result.className=
-"result good";
-
-
-result.innerHTML=`
-
-<div class="main">
-XAU + XAG BEARISH
-</div>
-
-<div class="sub">
-D-VWAP IS THE BEST ENTRY
-</div>
-
-<div class="small">
-Wait for the D-VWAP entry rather than forcing a distant entry.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-A.negative>=4 &&
-B.negative>=1 &&
-B.negative<=3
-){
-
-result.className=
-"result wait";
-
-
-result.innerHTML=`
-
-<div class="main">
-ENTER XAG FROM D-VWAP
-</div>
-
-<div class="sub">
-EXPECT XAU TO TURN BEARISH SLIGHTLY BEFORE D-VWAP
-</div>
-
-<div class="small">
-XAU has stronger bearish confirmation while XAG is at −1 to −3.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-B.negative>=4 &&
-A.negative>=1 &&
-A.negative<=3
-){
-
-result.className=
-"result wait";
-
-
-result.innerHTML=`
-
-<div class="main">
-ENTER XAU FROM D-VWAP
-</div>
-
-<div class="sub">
-EXPECT XAG TO TURN BEARISH SLIGHTLY BEFORE D-VWAP
-</div>
-
-<div class="small">
-XAG has stronger bearish confirmation while XAU is at −1 to −3.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-xd!==0 &&
-gd===0
-){
-
-result.className=
-"result wait";
-
-
-result.innerHTML=`
-
-<div class="main">
-PREFER GOLD D-VWAP FOR ENTRY
-</div>
-
-<div class="sub">
-EXTRA-SAFE ENTRY FOR SILVER
-</div>
-
-<div class="small">
-XAU is eligible while XAG has not reached ±4.
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(
-xd===0 &&
-gd!==0
-){
-
-result.className=
-"result wait";
-
-
-result.innerHTML=`
-
-<div class="main">
-PREFER SILVER D-VWAP FOR ENTRY
-</div>
-
-<div class="sub">
-EXTRA-SAFE ENTRY FOR GOLD
-</div>
-
-<div class="small">
-XAG is eligible while XAU has not reached ±4.
+Follow the location and entry rules above.
+Do not enter unless TRD is accepted and price reaches a suitable nearby entry point.
 </div>
 
 `;
@@ -4154,10 +1175,6 @@ DON'T OVERTRADE
 NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL
 </div>
 
-<div class="small">
-Select TRE / RAN / TRN above to activate the market-regime filter.
-</div>
-
 `;
 
 }
@@ -4169,1481 +1186,91 @@ UPDATE EVERYTHING
 
 function update(){
 
-let A=
-calculate(xau);
+const data=
+calculate();
 
 
-let B=
-calculate(xag);
+displayXAU(data);
 
-
-displayMetal(
-"xau",
-A
-);
-
-
-displayMetal(
-"xag",
-B
-);
-
-
-displayRegime("xau");
-
-displayRegime("xag");
-
-
-updateResult(
-A,
-B
-);
-
-
-updateLearningDisplay();
+updateResult(data);
 
 }
 
 
 /* =========================================================
-CREATE FINGERPRINT
+RESTORE POINT BUTTONS
 ========================================================= */
 
-function makeFingerprint(){
+function restoreButtons(){
 
-return [
+const card=
+document.querySelector(
+".card"
+);
 
-xau.join(","),
+const points=
+card.querySelectorAll(
+".point"
+);
 
-xag.join(",")
 
-].join("|");
+points.forEach(
+function(point,index){
+
+const value=
+xau[index];
+
+
+if(value===null){
+
+return;
 
 }
 
 
-/* =========================================================
-DIRECTION TEXT
-========================================================= */
+const buttons=
+point.querySelectorAll(
+"button"
+);
 
-function directionText(value){
+
+let buttonIndex;
+
 
 if(value===1){
 
-return "BULLISH";
+buttonIndex=0;
+
+}else if(value===-1){
+
+buttonIndex=1;
+
+}else{
+
+buttonIndex=2;
 
 }
 
 
-if(value===-1){
-
-return "BEARISH";
-
-}
-
-
-return "NEUTRAL";
-
-}
-
-
-/* =========================================================
-FORMAT POINT VALUE
-========================================================= */
-
-function formatPointValue(value){
-
-if(value===1){
-
-return "+1";
-
-}
-
-
-if(value===-1){
-
-return "-1";
-
-}
-
-
-if(value===0){
-
-return "0";
-
-}
-
-
-return "—";
-
-}
-
-
-/* =========================================================
-FORMAT POINTS
-========================================================= */
-
-function formatPoints(points){
-
-return points.map(
-function(v){
-
-return formatPointValue(v);
-
-}
-).join(" ");
-
-}
-
-
-/* =========================================================
-CREATE SETUP SNAPSHOT
-========================================================= */
-
-function createSetupSnapshot(){
-
-const A=
-calculate(xau);
-
-
-const B=
-calculate(xag);
-
-
-return {
-
-id:
-Date.now().toString()+
-Math.random()
-.toString(36)
-.slice(2),
-
-timestamp:
-Date.now(),
-
-
-xau:
-[...xau],
-
-
-xag:
-[...xag],
-
-
-xauPositive:
-A.positive,
-
-
-xauNegative:
-A.negative,
-
-
-xagPositive:
-B.positive,
-
-
-xagNegative:
-B.negative,
-
-
-xauDirection:
-direction(A),
-
-
-xagDirection:
-direction(B),
-
-
-xauRegime:
-marketRegime.xau.regime,
-
-xagRegime:
-marketRegime.xag.regime,
-
-xauStructure:
-marketRegime.xau.structure,
-
-xagStructure:
-marketRegime.xag.structure,
-
-xauVWAP:
-marketRegime.xau.vwap,
-
-xagVWAP:
-marketRegime.xag.vwap,
-
-
-fingerprint:
-makeFingerprint(),
-
-
-entryStarted:false,
-
-entryPair:null,
-
-entryDirection:null,
-
-entryFrom:null,
-
-entryPrice:null,
-
-entryTimestamp:null,
-
-pointChanges:[],
-
-outcome:"PENDING"
-
-};
-
-}
-
-
-/* =========================================================
-OPEN ENTRY FORM
-========================================================= */
-
-function openEntryForm(){
-
-const A=
-calculate(xau);
-
-
-const B=
-calculate(xag);
-
-
-const xd=
-direction(A);
-
-
-const gd=
-direction(B);
-
-
-if(
-xd===0 &&
-gd===0
-){
-
-alert(
-"No ±4 eligible direction is currently present."
-);
-
-return;
-
-}
-
-
-pendingSetup=
-createSetupSnapshot();
-
-
-entryPair=null;
-
-entryDirection=null;
-
-
-document.getElementById(
-"entryForm"
-).style.display="block";
-
-
-document.getElementById(
-"recordButtonArea"
-).style.display="none";
-
-
-document.getElementById(
-"entryFrom"
-).value="";
-
-
-document.getElementById(
-"entryPrice"
-).value="";
-
-
-document
-.querySelectorAll(
-".entry-pair button,.entry-direction button"
-)
-.forEach(function(button){
-
-button.classList.remove(
-"active"
+highlightButton(
+buttons[buttonIndex],
+value
 );
 
 });
 
-
-savePendingSetup();
-
-updateLearningDisplay();
-
 }
 
 
 /* =========================================================
-SELECT ENTRY PAIR
-========================================================= */
-
-function selectEntryPair(pair){
-
-entryPair=pair;
-
-
-document
-.querySelectorAll(
-".entry-pair button"
-)
-.forEach(function(button){
-
-button.classList.remove(
-"active"
-);
-
-});
-
-
-if(pair==="XAU"){
-
-document.getElementById(
-"entryXAU"
-).classList.add(
-"active"
-);
-
-}else{
-
-document.getElementById(
-"entryXAG"
-).classList.add(
-"active"
-);
-
-}
-
-}
-
-
-/* =========================================================
-SELECT ENTRY DIRECTION
-========================================================= */
-
-function selectEntryDirection(
-dir
-){
-
-entryDirection=dir;
-
-
-document
-.querySelectorAll(
-".entry-direction button"
-)
-.forEach(function(button){
-
-button.classList.remove(
-"active"
-);
-
-});
-
-
-if(dir==="BUY"){
-
-document.getElementById(
-"entryBUY"
-).classList.add(
-"active"
-);
-
-}else{
-
-document.getElementById(
-"entrySELL"
-).classList.add(
-"active"
-);
-
-}
-
-}
-
-
-/* =========================================================
-START ACTUAL TRADE RECORDING
-========================================================= */
-
-function startRecordedTrade(){
-
-if(!pendingSetup){
-
-return;
-
-}
-
-
-const entryFrom=
-document.getElementById(
-"entryFrom"
-).value;
-
-
-const entryPrice=
-document.getElementById(
-"entryPrice"
-).value;
-
-
-if(!entryPair){
-
-alert(
-"Select XAU or XAG."
-);
-
-return;
-
-}
-
-
-if(!entryDirection){
-
-alert(
-"Select BUY or SELL."
-);
-
-return;
-
-}
-
-
-if(!entryFrom){
-
-alert(
-"Select where you entered from."
-);
-
-return;
-
-}
-
-
-if(
-entryPrice==="" ||
-!isFinite(Number(entryPrice))
-){
-
-alert(
-"Enter your entry price."
-);
-
-return;
-
-}
-
-
-pendingSetup.entryStarted=
-true;
-
-
-pendingSetup.entryPair=
-entryPair;
-
-
-pendingSetup.entryDirection=
-entryDirection;
-
-
-pendingSetup.entryFrom=
-entryFrom;
-
-
-pendingSetup.entryPrice=
-Number(entryPrice);
-
-
-pendingSetup.entryTimestamp=
-Date.now();
-
-
-savePendingSetup();
-
-
-document.getElementById(
-"entryForm"
-).style.display="none";
-
-
-document.getElementById(
-"outcomeButtons"
-).style.display="grid";
-
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-CANCEL ENTRY FORM
-========================================================= */
-
-function cancelEntryForm(){
-
-pendingSetup=null;
-
-entryPair=null;
-
-entryDirection=null;
-
-
-document.getElementById(
-"entryForm"
-).style.display="none";
-
-
-document.getElementById(
-"recordButtonArea"
-).style.display="grid";
-
-
-savePendingSetup();
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-CANCEL PENDING SETUP
-========================================================= */
-
-function cancelPendingSetup(){
-
-pendingSetup=null;
-
-entryPair=null;
-
-entryDirection=null;
-
-
-document.getElementById(
-"entryForm"
-).style.display="none";
-
-
-document.getElementById(
-"recordButtonArea"
-).style.display="grid";
-
-
-document.getElementById(
-"outcomeButtons"
-).style.display="none";
-
-
-savePendingSetup();
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-FINISH PENDING SETUP
-========================================================= */
-
-function finishPendingSetup(
-outcome
-){
-
-if(!pendingSetup){
-
-return;
-
-}
-
-
-pendingSetup.outcome=
-outcome;
-
-
-learningHistory.unshift(
-pendingSetup
-);
-
-
-saveLearning();
-
-
-pendingSetup=null;
-
-entryPair=null;
-
-entryDirection=null;
-
-
-savePendingSetup();
-
-
-document.getElementById(
-"outcomeButtons"
-).style.display="none";
-
-
-document.getElementById(
-"recordButtonArea"
-).style.display="grid";
-
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-FORMAT DATE
-========================================================= */
-
-function formatDate(timestamp){
-
-return new Date(timestamp)
-.toLocaleString();
-
-}
-
-
-/* =========================================================
-FORMAT CHANGE
-========================================================= */
-
-function formatChange(change){
-
-return (
-change.metal+
-" P"+change.point+
-": "+
-formatPointValue(change.oldValue)+
-" → "+
-formatPointValue(change.newValue)
-);
-
-}
-
-
-/* =========================================================
-COMPLETED HISTORY
-========================================================= */
-
-function getCompletedHistory(){
-
-return learningHistory.filter(
-function(item){
-
-return item.outcome==="WIN" ||
-item.outcome==="LOSS";
-
-}
-);
-
-}
-
-
-/* =========================================================
-OVERALL STATISTICS
-========================================================= */
-
-function calculateOverallStats(){
-
-const completed=
-getCompletedHistory();
-
-
-const wins=
-completed.filter(
-function(item){
-
-return item.outcome==="WIN";
-
-}
-).length;
-
-
-const losses=
-completed.filter(
-function(item){
-
-return item.outcome==="LOSS";
-
-}
-).length;
-
-
-const total=
-wins+
-losses;
-
-
-const winRate=
-total>0
-?((wins/total)*100)
-.toFixed(1)
-:"0.0";
-
-
-const netR=
-(wins*3)-
-(losses*1);
-
-
-return {
-
-total,
-wins,
-losses,
-winRate,
-netR
-
-};
-
-}
-
-
-/* =========================================================
-EXACT SETUP STATISTICS
-========================================================= */
-
-function getSetupStats(
-fingerprint
-){
-
-const trades=
-getCompletedHistory()
-.filter(
-function(item){
-
-return item.fingerprint===
-fingerprint;
-
-}
-);
-
-
-const wins=
-trades.filter(
-function(item){
-
-return item.outcome==="WIN";
-
-}
-).length;
-
-
-const losses=
-trades.filter(
-function(item){
-
-return item.outcome==="LOSS";
-
-}
-).length;
-
-
-const total=
-wins+
-losses;
-
-
-const winRate=
-total>0
-?((wins/total)*100)
-.toFixed(1)
-:"0.0";
-
-
-const netR=
-(wins*3)-
-(losses*1);
-
-
-return {
-
-total,
-wins,
-losses,
-winRate,
-netR
-
-};
-
-}
-
-
-/* =========================================================
-LEARNING CURRENT DISPLAY
-========================================================= */
-
-function updateLearningDisplay(){
-
-const current=
-document.getElementById(
-"learningCurrent"
-);
-
-
-const outcomeButtons=
-document.getElementById(
-"outcomeButtons"
-);
-
-
-const recordButtonArea=
-document.getElementById(
-"recordButtonArea"
-);
-
-
-if(pendingSetup){
-
-let entryInfo="";
-
-
-if(
-pendingSetup.entryStarted
-){
-
-entryInfo=`
-
-<div class="history-entry">
-
-<strong>ENTRY</strong><br>
-
-Pair:
-${pendingSetup.entryPair}
-<br>
-
-Direction:
-${pendingSetup.entryDirection}
-<br>
-
-From:
-${pendingSetup.entryFrom}
-<br>
-
-Price:
-${pendingSetup.entryPrice}
-
-</div>
-
-`;
-
-}
-
-
-let changesHTML="";
-
-
-if(
-pendingSetup.pointChanges &&
-pendingSetup.pointChanges.length>0
-){
-
-changesHTML=`
-
-<div class="changes">
-
-<strong>
-POST-ENTRY POINT CHANGES:
-</strong>
-
-${
-pendingSetup.pointChanges
-.map(function(change){
-
-return `
-<div class="change-item">
-${formatDate(change.timestamp)}
-—
-${formatChange(change)}
-</div>
-`;
-
-})
-.join("")
-}
-
-</div>
-
-`;
-
-}else if(
-pendingSetup.entryStarted
-){
-
-changesHTML=`
-
-<div class="changes">
-NO POINT CHANGES AFTER ENTRY YET.
-</div>
-
-`;
-
-}
-
-
-current.innerHTML=`
-
-<strong>
-${
-pendingSetup.entryStarted
-?"TRADE ACTIVE"
-:"SETUP READY"
-}
-</strong>
-
-<br>
-
-XAU REGIME:
-${pendingSetup.xauRegime || "NOT SET"}
-
-<br>
-
-XAU STRUCTURE:
-${pendingSetup.xauStructure || "NOT SET"}
-
-<br>
-
-XAU VWAP:
-${pendingSetup.xauVWAP || "NOT SET"}
-
-<br>
-
-XAG REGIME:
-${pendingSetup.xagRegime || "NOT SET"}
-
-<br>
-
-XAG STRUCTURE:
-${pendingSetup.xagStructure || "NOT SET"}
-
-<br>
-
-XAG VWAP:
-${pendingSetup.xagVWAP || "NOT SET"}
-
-<br><br>
-
-Original XAU:
-${formatPoints(pendingSetup.xau)}
-
-<br>
-
-Original XAG:
-${formatPoints(pendingSetup.xag)}
-
-${entryInfo}
-
-${changesHTML}
-
-`;
-
-
-if(
-pendingSetup.entryStarted
-){
-
-outcomeButtons.style.display=
-"grid";
-
-recordButtonArea.style.display=
-"none";
-
-}else{
-
-outcomeButtons.style.display=
-"none";
-
-recordButtonArea.style.display=
-"grid";
-
-}
-
-}else{
-
-current.innerHTML=
-"NO SETUP RECORDED";
-
-
-outcomeButtons.style.display=
-"none";
-
-
-recordButtonArea.style.display=
-"grid";
-
-}
-
-
-const overall=
-calculateOverallStats();
-
-
-const stats=
-document.getElementById(
-"learningStats"
-);
-
-
-if(overall.total===0){
-
-stats.innerHTML=
-"No completed trades recorded yet.";
-
-}else{
-
-stats.innerHTML=`
-
-<div class="stat-row">
-<span>TOTAL TRADES</span>
-<span>${overall.total}</span>
-</div>
-
-<div class="stat-row">
-<span>WINS</span>
-<span>${overall.wins}</span>
-</div>
-
-<div class="stat-row">
-<span>LOSSES</span>
-<span>${overall.losses}</span>
-</div>
-
-<div class="stat-row">
-<span>WIN RATE</span>
-<span>${overall.winRate}%</span>
-</div>
-
-<div class="stat-row">
-<span>NET R</span>
-<span>
-${
-overall.netR>=0
-?"+"
-:""
-}${overall.netR}R
-</span>
-</div>
-
-`;
-
-}
-
-
-renderHistory();
-
-}
-
-
-/* =========================================================
-RENDER HISTORY
-========================================================= */
-
-function renderHistory(){
-
-const container=
-document.getElementById(
-"learningHistory"
-);
-
-
-if(
-learningHistory.length===0
-){
-
-container.innerHTML="";
-
-return;
-
-}
-
-
-container.innerHTML="";
-
-
-learningHistory.forEach(
-function(item){
-
-const setupStats=
-getSetupStats(
-item.fingerprint
-);
-
-
-const div=
-document.createElement(
-"div"
-);
-
-
-if(
-item.outcome==="WIN"
-){
-
-div.className=
-"history-item history-win";
-
-}else if(
-item.outcome==="LOSS"
-){
-
-div.className=
-"history-item history-loss";
-
-}else{
-
-div.className=
-"history-item history-pending";
-
-}
-
-
-const outcomeText=
-item.outcome==="WIN"
-?"✓ WIN +3R"
-:item.outcome==="LOSS"
-?"✕ LOSS -1R"
-:"PENDING";
-
-
-let changesHTML="";
-
-
-if(
-item.pointChanges &&
-item.pointChanges.length>0
-){
-
-changesHTML=`
-
-<div class="changes">
-
-<strong>
-POINT CHANGES AFTER ENTRY:
-</strong>
-
-${
-item.pointChanges
-.map(function(change){
-
-return `
-<div class="change-item">
-${formatDate(change.timestamp)}
-—
-${formatChange(change)}
-</div>
-`;
-
-})
-.join("")
-}
-
-</div>
-
-`;
-
-}else if(
-item.entryStarted
-){
-
-changesHTML=`
-
-<div class="changes">
-NO POINT CHANGES AFTER ENTRY.
-</div>
-
-`;
-
-}
-
-
-let entryHTML="";
-
-
-if(
-item.entryStarted
-){
-
-entryHTML=`
-
-<div class="history-entry">
-
-<strong>
-ENTRY INFORMATION
-</strong>
-
-<br>
-
-Pair:
-${item.entryPair}
-
-<br>
-
-Direction:
-${item.entryDirection}
-
-<br>
-
-From:
-${item.entryFrom}
-
-<br>
-
-Price:
-${item.entryPrice}
-
-</div>
-
-`;
-
-}
-
-
-div.innerHTML=`
-
-<strong>
-${outcomeText}
-</strong>
-
-<br>
-
-${formatDate(item.timestamp)}
-
-<br><br>
-
-<strong>
-MARKET REGIME
-</strong>
-
-<br>
-
-XAU:
-${item.xauRegime || "NOT SET"}
-/
-${item.xauStructure || "NOT SET"}
-/
-${item.xauVWAP || "NOT SET"}
-
-<br>
-
-XAG:
-${item.xagRegime || "NOT SET"}
-/
-${item.xagStructure || "NOT SET"}
-/
-${item.xagVWAP || "NOT SET"}
-
-<br><br>
-
-<strong>
-ORIGINAL SETUP
-</strong>
-
-<br>
-
-XAU:
-${formatPoints(item.xau)}
-
-<br>
-
-XAG:
-${formatPoints(item.xag)}
-
-${entryHTML}
-
-${changesHTML}
-
-<br>
-
-Exact setup:
-${setupStats.total}
-trades |
-${setupStats.winRate}%
-win rate |
-${
-setupStats.netR>=0
-?"+"
-:""
-}${setupStats.netR}R
-
-<div class="history-buttons">
-
-${
-item.outcome==="PENDING"
-?`
-
-<button
-class="win"
-onclick="finishHistoryItem('${item.id}','WIN')"
->
-WIN +3R
-</button>
-
-<button
-class="loss"
-onclick="finishHistoryItem('${item.id}','LOSS')"
->
-LOSS -1R
-</button>
-
-`
-:`
-
-<button
-class="delete-history"
-onclick="deleteHistoryItem('${item.id}')"
->
-DELETE
-</button>
-
-`
-}
-
-</div>
-
-`;
-
-
-container.appendChild(
-div
-);
-
-}
-);
-
-}
-
-
-/* =========================================================
-FINISH HISTORY ITEM
-========================================================= */
-
-function finishHistoryItem(
-id,
-outcome
-){
-
-const item=
-learningHistory.find(
-function(x){
-
-return x.id===id;
-
-}
-);
-
-
-if(!item){
-
-return;
-
-}
-
-
-item.outcome=
-outcome;
-
-
-saveLearning();
-
-renderHistory();
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-DELETE HISTORY ITEM
-========================================================= */
-
-function deleteHistoryItem(
-id
-){
-
-learningHistory=
-learningHistory.filter(
-function(item){
-
-return item.id!==id;
-
-}
-);
-
-
-saveLearning();
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-CLEAR ALL LEARNING DATA
-========================================================= */
-
-function clearLearningHistory(){
-
-if(
-learningHistory.length===0
-){
-
-return;
-
-}
-
-
-const confirmed=
-confirm(
-"Delete ALL learning/trade history?"
-);
-
-
-if(!confirmed){
-
-return;
-
-}
-
-
-learningHistory=[];
-
-pendingSetup=null;
-
-entryPair=null;
-
-entryDirection=null;
-
-
-saveLearning();
-
-savePendingSetup();
-
-
-updateLearningDisplay();
-
-}
-
-
-/* =========================================================
-RESET CALCULATOR
+RESET
 ========================================================= */
 
 function resetAll(){
 
 const confirmed=
 confirm(
-"Reset all XAU/XAG points AND market regime?"
+"Reset all XAU points?"
 );
 
 
@@ -5664,41 +1291,9 @@ null
 ];
 
 
-xag=[
-null,
-null,
-null,
-null,
-null,
-null
-];
-
-
-eligibilityTimes={
-
-xauBull:null,
-xauBear:null,
-xagBull:null,
-xagBear:null
-
-};
-
-
-marketRegime={
-
-xau:{
-regime:null,
-structure:null,
-vwap:null
-},
-
-xag:{
-regime:null,
-structure:null,
-vwap:null
-}
-
-};
+localStorage.removeItem(
+STORAGE_KEY
+);
 
 
 document
@@ -5712,158 +1307,10 @@ clearButton(
 button
 );
 
-}
-);
+});
 
-
-clearRegimeButtons("xau");
-
-clearRegimeButtons("xag");
-
-
-saveState();
 
 update();
-
-}
-
-
-/* =========================================================
-RESTORE POINT BUTTON HIGHLIGHTS
-========================================================= */
-
-function restoreButtons(){
-
-const metals=[
-
-{
-name:"xau",
-values:xau
-},
-
-{
-name:"xag",
-values:xag
-}
-
-];
-
-
-metals.forEach(
-function(metal){
-
-let card=
-document.querySelector(
-metal.name==="xau"
-?".card:nth-child(1)"
-:".card:nth-child(2)"
-);
-
-
-let points=
-card.querySelectorAll(
-".point"
-);
-
-
-points.forEach(
-function(point,index){
-
-let value=
-metal.values[index];
-
-
-if(value===null){
-
-return;
-
-}
-
-
-let buttons=
-point.querySelectorAll(
-"button"
-);
-
-
-let buttonIndex;
-
-
-if(value===1){
-
-buttonIndex=0;
-
-}else if(
-value===-1
-){
-
-buttonIndex=1;
-
-}else{
-
-buttonIndex=2;
-
-}
-
-
-highlightButton(
-buttons[buttonIndex],
-value
-);
-
-}
-);
-
-}
-);
-
-}
-
-
-/* =========================================================
-RESTORE REGIME BUTTONS
-========================================================= */
-
-function restoreRegimeButtons(){
-
-["xau","xag"].forEach(
-function(metal){
-
-const data=
-marketRegime[metal];
-
-
-if(data.regime){
-
-selectRegime(
-metal,
-data.regime
-);
-
-}
-
-
-if(data.structure){
-
-selectStructure(
-metal,
-data.structure
-);
-
-}
-
-
-if(data.vwap){
-
-selectVWAP(
-metal,
-data.vwap
-);
-
-}
-
-}
-);
 
 }
 
@@ -5874,13 +1321,7 @@ INITIALIZE
 
 loadState();
 
-loadLearning();
-
-loadPendingSetup();
-
 restoreButtons();
-
-restoreRegimeButtons();
 
 update();
 
