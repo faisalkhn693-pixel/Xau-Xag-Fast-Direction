@@ -3,1327 +3,1536 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>XAU 6-Point Strategy</title>
 
 <style>
-
 *{
-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-margin:0;
-padding:9px;
-background:#f3f4f6;
-color:#111;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  margin:0;
+  background:#0b0f14;
+  color:#f2f4f7;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+.container{
+  width:100%;
+  max-width:620px;
+  margin:auto;
+  padding:18px 14px 40px;
 }
 
 h1{
-text-align:center;
-font-size:23px;
-font-weight:900;
-margin:7px 0 2px;
+  text-align:center;
+  font-size:25px;
+  margin:5px 0 4px;
+  font-weight:800;
 }
 
 .subtitle{
-text-align:center;
-color:#666;
-font-size:12px;
-margin-bottom:12px;
-}
-
-
-/* =========================================================
-LOCATION
-========================================================= */
-
-.location-box{
-margin-bottom:10px;
-background:#fff;
-border-radius:12px;
-padding:10px 9px;
-box-shadow:0 2px 9px rgba(0,0,0,.10);
-border:1px solid #ddd;
-}
-
-.location-title{
-text-align:center;
-font-size:13px;
-font-weight:950;
-margin-bottom:7px;
-}
-
-.location-text{
-text-align:center;
-font-size:10px;
-font-weight:850;
-line-height:1.6;
-}
-
-
-/* =========================================================
-ENTRY RULES
-========================================================= */
-
-.entry-rules{
-margin-bottom:10px;
-background:#fff;
-border-radius:12px;
-padding:10px 9px;
-box-shadow:0 2px 9px rgba(0,0,0,.10);
-border:1px solid #ddd;
-}
-
-.entry-rules-title{
-text-align:center;
-font-size:13px;
-font-weight:950;
-margin-bottom:7px;
-}
-
-.entry-rule{
-font-size:10px;
-font-weight:850;
-line-height:1.45;
-padding:4px 0;
-}
-
-.entry-rule-number{
-font-weight:950;
-}
-
-
-/* =========================================================
-XAU CARD
-========================================================= */
-
-.columns{
-display:grid;
-grid-template-columns:1fr;
-gap:8px;
+  text-align:center;
+  color:#8e98a6;
+  font-size:13px;
+  margin-bottom:18px;
 }
 
 .card{
-background:#fff;
-border-radius:15px;
-padding:7px;
-box-shadow:0 2px 9px rgba(0,0,0,.10);
+  background:#121821;
+  border:1px solid #202a36;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
 }
 
-.header{
-text-align:center;
-font-size:20px;
-font-weight:900;
-background:#e9e9e9;
-border-radius:10px;
-padding:8px;
-margin-bottom:7px;
+.section-title{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:12px;
 }
 
-.point{
-background:#fff;
-border:1px solid #ddd;
-border-radius:10px;
-padding:7px;
-margin-bottom:7px;
+.section-subtitle{
+  color:#8e98a6;
+  font-size:12px;
+  margin-top:-7px;
+  margin-bottom:12px;
 }
 
-.point-number{
-font-size:9px;
-font-weight:900;
-margin-bottom:2px;
-}
-
-.point-name{
-font-size:8.5px;
-font-weight:700;
-line-height:1.3;
-min-height:32px;
-margin-bottom:5px;
-}
-
-.buttons{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:4px;
+.location-grid,
+.button-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
 }
 
 button{
-border:1px solid #ccc;
-background:#fafafa;
-color:#222;
-border-radius:7px;
-padding:8px 2px;
-font-size:10px;
-font-weight:900;
-cursor:pointer;
--webkit-tap-highlight-color:transparent;
+  border:1px solid #2a3543;
+  background:#171f29;
+  color:#dce2e9;
+  border-radius:10px;
+  padding:11px 8px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.15s;
 }
 
-button.selected.plus{
-background:#baf0c8!important;
-color:#075f27!important;
-border:2px solid #08752f!important;
-box-shadow:0 0 0 2px rgba(8,117,47,.15);
+button:active{
+  transform:scale(.98);
 }
 
-button.selected.minus{
-background:#ffc5c5!important;
-color:#9d1111!important;
-border:2px solid #c62828!important;
-box-shadow:0 0 0 2px rgba(198,40,40,.15);
+button.selected{
+  background:#263342;
+  border-color:#75869a;
+  color:#fff;
 }
 
-button.selected.zero{
-background:#cfcfcf!important;
-color:#333!important;
-border:2px solid #666!important;
-box-shadow:0 0 0 2px rgba(80,80,80,.15);
+.analyzer-row{
+  margin-bottom:14px;
 }
 
+.analyzer-label{
+  font-size:12px;
+  color:#929cab;
+  margin-bottom:7px;
+  font-weight:700;
+}
 
-/* =========================================================
-TOTAL
-========================================================= */
+.analyzer-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
 
-.total{
-margin-top:7px;
-background:#f0f0f0;
-border-radius:10px;
-padding:9px 3px;
-text-align:center;
+.analyzer-buttons button{
+  padding:10px 5px;
+}
+
+.result-box{
+  border-radius:13px;
+  padding:14px;
+  margin-top:12px;
+  text-align:center;
+  border:1px solid #2a3543;
+  background:#10161e;
+}
+
+.result-title{
+  font-size:15px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.result-detail{
+  color:#aab3bf;
+  font-size:12px;
+  line-height:1.45;
+}
+
+.green{
+  color:#4ade80;
+}
+
+.red{
+  color:#ff5d5d;
+}
+
+.gray{
+  color:#aab3bf;
+}
+
+.rule{
+  padding:8px 0;
+  border-bottom:1px solid #202a36;
+  font-size:13px;
+  color:#dce2e9;
+}
+
+.rule:last-child{
+  border-bottom:0;
+}
+
+.points-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.instrument{
+  font-size:20px;
+  font-weight:900;
 }
 
 .score{
-font-size:22px;
-font-weight:900;
+  color:#9da8b5;
+  font-size:12px;
 }
 
-.positive{
-color:#08752f;
+.point{
+  padding:12px 0;
+  border-bottom:1px solid #202a36;
 }
 
-.negative{
-color:#c62828;
+.point:last-child{
+  border-bottom:0;
 }
 
-.status{
-margin-top:4px;
-font-size:9px;
-font-weight:900;
-color:#666;
+.point-name{
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
+  line-height:1.35;
+}
+
+.point-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.point-buttons button{
+  padding:9px 5px;
+  font-size:12px;
+}
+
+.plus.selected{
+  background:#153d28;
+  border-color:#2d9d5b;
+  color:#4ade80;
+}
+
+.minus.selected{
+  background:#401b20;
+  border-color:#b33d48;
+  color:#ff6b75;
+}
+
+.zero.selected{
+  background:#2a313a;
+  border-color:#657180;
+  color:#d3d8de;
 }
 
 .eligibility{
-margin-top:6px;
-padding:6px 2px;
-border-radius:7px;
-background:#e8e8e8;
-color:#666;
-font-size:9px;
-font-weight:900;
+  margin-top:13px;
+  padding:12px;
+  border-radius:11px;
+  text-align:center;
+  font-size:14px;
+  font-weight:900;
+  background:#10161e;
+  border:1px solid #293340;
 }
 
-.eligibility.bull{
-background:#c9f2d3;
-color:#08752f;
+.main-decision{
+  text-align:center;
+  padding:17px 13px;
+  border-radius:14px;
+  background:#10161e;
+  border:1px solid #293340;
 }
 
-.eligibility.bear{
-background:#ffd1d1;
-color:#a51b1b;
+.main-decision-title{
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:6px;
 }
 
-
-/* =========================================================
-PERMANENT TRADING RULES
-========================================================= */
-
-.rules{
-margin-top:10px;
-background:#ffffff;
-border-radius:12px;
-padding:10px 9px;
-box-shadow:0 2px 9px rgba(0,0,0,.10);
-border:1px solid #ddd;
+.main-decision-text{
+  font-size:12px;
+  color:#aab3bf;
+  line-height:1.5;
 }
-
-.rules-title{
-text-align:center;
-font-size:12px;
-font-weight:950;
-margin-bottom:7px;
-}
-
-.rule{
-font-size:10px;
-font-weight:850;
-line-height:1.45;
-padding:3px 0;
-}
-
-.rule-number{
-font-weight:950;
-}
-
-
-/* =========================================================
-MAIN RESULT
-========================================================= */
-
-.result{
-margin-top:10px;
-padding:14px 10px;
-border-radius:11px;
-text-align:center;
-font-size:12px;
-font-weight:900;
-line-height:1.55;
-background:#eeeeee;
-color:#555;
-}
-
-.result.good{
-background:#d9f5df;
-color:#145c2c;
-}
-
-.result.bad{
-background:#ffdede;
-color:#9d1717;
-}
-
-.result.wait{
-background:#fff0cc;
-color:#765600;
-}
-
-.result .main{
-font-size:14px;
-font-weight:950;
-}
-
-.result .sub{
-margin-top:3px;
-font-size:11px;
-font-weight:900;
-}
-
-.result .small{
-margin-top:6px;
-font-size:9px;
-font-weight:800;
-opacity:.85;
-}
-
-
-/* =========================================================
-RESET
-========================================================= */
 
 .reset{
-display:block;
-margin:10px auto;
-padding:8px 22px;
-border:1px solid #bbb;
-background:white;
-border-radius:8px;
-font-weight:800;
+  width:100%;
+  margin-top:5px;
+  background:#171d25;
+  border-color:#343e4b;
+  color:#aeb7c2;
 }
 
-
-@media(max-width:500px){
-
-body{
-padding:6px;
+.clear-analyzer{
+  width:100%;
+  margin-top:10px;
+  background:#171d25;
+  border-color:#343e4b;
+  color:#aeb7c2;
 }
 
-h1{
-font-size:21px;
+.small-note{
+  text-align:center;
+  color:#65707e;
+  font-size:11px;
+  margin-top:12px;
+  line-height:1.4;
 }
 
-.card{
-padding:5px;
-}
+@media(max-width:420px){
+  .container{
+    padding-left:10px;
+    padding-right:10px;
+  }
 
-.header{
-font-size:18px;
-padding:7px;
-}
+  h1{
+    font-size:23px;
+  }
 
-.point{
-padding:5px;
+  button{
+    font-size:12px;
+  }
 }
-
-.point-name{
-font-size:8px;
-}
-
-button{
-font-size:9px;
-padding:8px 1px;
-}
-
-.score{
-font-size:20px;
-}
-
-.result{
-font-size:11px;
-}
-
-.result .main{
-font-size:13px;
-}
-
-.location-box,
-.entry-rules,
-.rules{
-padding:9px 8px;
-}
-
-.location-text,
-.entry-rule,
-.rule{
-font-size:9px;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
-<h1>6-Point XAU Strategy Score</h1>
+<div class="container">
 
-<div class="subtitle">
-+4 / −4 = Eligibility
+  <h1>6-Point Strategy Score</h1>
+  <div class="subtitle">XAU • +4 / −4 = Eligibility</div>
+
+
+  <!-- PRICE + CVD + TRD ANALYZER -->
+  <div class="card">
+
+    <div class="section-title">PRICE + CVD + TRD</div>
+    <div class="section-subtitle">
+      Use after price reaches a key location
+    </div>
+
+    <!-- LOCATION -->
+    <div class="analyzer-row">
+      <div class="analyzer-label">LOCATION</div>
+
+      <div class="location-grid">
+
+        <button
+          id="loc-W-VAH"
+          onclick="setAnalyzer('location','W-VAH')">
+          W-VAH
+        </button>
+
+        <button
+          id="loc-D-VAH"
+          onclick="setAnalyzer('location','D-VAH')">
+          D-VAH
+        </button>
+
+        <button
+          id="loc-VAH-B1"
+          onclick="setAnalyzer('location','VAH + B1')">
+          VAH + B1
+        </button>
+
+        <button
+          id="loc-VWAP"
+          onclick="setAnalyzer('location','VWAP')">
+          VWAP
+        </button>
+
+        <button
+          id="loc-VAL-B1"
+          onclick="setAnalyzer('location','VAL + B1')">
+          VAL + B1
+        </button>
+
+        <button
+          id="loc-D-VAL"
+          onclick="setAnalyzer('location','D-VAL')">
+          D-VAL
+        </button>
+
+        <button
+          id="loc-W-VAL"
+          onclick="setAnalyzer('location','W-VAL')">
+          W-VAL
+        </button>
+
+        <button
+          id="loc-OTHER"
+          onclick="setAnalyzer('location','OTHER')">
+          OTHER
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- PRICE -->
+    <div class="analyzer-row">
+
+      <div class="analyzer-label">PRICE</div>
+
+      <div class="analyzer-buttons">
+
+        <button
+          id="price-UP"
+          onclick="setAnalyzer('price','UP')">
+          ↑ UP
+        </button>
+
+        <button
+          id="price-FLAT"
+          onclick="setAnalyzer('price','FLAT')">
+          → FLAT
+        </button>
+
+        <button
+          id="price-DOWN"
+          onclick="setAnalyzer('price','DOWN')">
+          ↓ DOWN
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CVD -->
+    <div class="analyzer-row">
+
+      <div class="analyzer-label">CVD</div>
+
+      <div class="analyzer-buttons">
+
+        <button
+          id="cvd-UP"
+          onclick="setAnalyzer('cvd','UP')">
+          ↑ UP
+        </button>
+
+        <button
+          id="cvd-FLAT"
+          onclick="setAnalyzer('cvd','FLAT')">
+          → FLAT
+        </button>
+
+        <button
+          id="cvd-DOWN"
+          onclick="setAnalyzer('cvd','DOWN')">
+          ↓ DOWN
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- TRD -->
+    <div class="analyzer-row">
+
+      <div class="analyzer-label">TRD / FOOTPRINT</div>
+
+      <div class="analyzer-buttons">
+
+        <button
+          id="trd-BUY"
+          onclick="setAnalyzer('trd','BUY')">
+          BUY
+        </button>
+
+        <button
+          id="trd-NEUTRAL"
+          onclick="setAnalyzer('trd','NEUTRAL')">
+          NEUTRAL
+        </button>
+
+        <button
+          id="trd-SELL"
+          onclick="setAnalyzer('trd','SELL')">
+          SELL
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ANALYZER RESULT -->
+    <div class="result-box">
+
+      <div
+        id="analyzerResultTitle"
+        class="result-title gray">
+        NO CLEAR SETUP
+      </div>
+
+      <div
+        id="analyzerResultDetail"
+        class="result-detail">
+        Select Location, Price, CVD and TRD.
+      </div>
+
+    </div>
+
+
+    <button
+      class="clear-analyzer"
+      onclick="clearAnalyzer()">
+      Clear Analyzer
+    </button>
+
+  </div>
+
+
+  <!-- LOCATION -->
+  <div class="card">
+
+    <div class="section-title">LOCATION</div>
+
+    <div class="section-subtitle">
+      Best → weaker
+    </div>
+
+    <div class="rule">1. W-VAH</div>
+    <div class="rule">2. D-VAH</div>
+    <div class="rule">3. VAH + Band 1</div>
+    <div class="rule">4. VWAP</div>
+    <div class="rule">5. VAL + Band 1</div>
+    <div class="rule">6. D-VAL</div>
+    <div class="rule">7. W-VAL</div>
+
+  </div>
+
+
+  <!-- ENTRY RULES -->
+  <div class="card">
+
+    <div class="section-title">ENTRY RULES</div>
+
+    <div class="rule">
+      1. Use VWAP only if trend is confirmed.
+    </div>
+
+    <div class="rule">
+      2. Price must touch the location properly.
+    </div>
+
+    <div class="rule">
+      3. Only after that TRD is accepted.
+    </div>
+
+    <div class="rule">
+      4. After TRD, price must come to a nearby suitable entry point.
+    </div>
+
+    <div class="rule">
+      5. Otherwise: WATCH ONLY.
+    </div>
+
+  </div>
+
+
+  <!-- XAU -->
+  <div class="card">
+
+    <div class="points-header">
+      <div class="instrument">XAU</div>
+
+      <div class="score">
+        <span id="positiveCount">0</span>+
+        /
+        <span id="negativeCount">0</span>−
+        •
+        <span id="selectedCount">0</span>/6
+      </div>
+    </div>
+
+
+    <!-- POINT 1 -->
+    <div class="point">
+
+      <div class="point-name">
+        1. W-POC formed upwards / downwards
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-0-plus"
+          class="plus"
+          onclick="setPoint(0,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-0-zero"
+          class="zero"
+          onclick="setPoint(0,0)">
+          0
+        </button>
+
+        <button
+          id="xau-0-minus"
+          class="minus"
+          onclick="setPoint(0,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- POINT 2 -->
+    <div class="point">
+
+      <div class="point-name">
+        2. Weekly VAH / VAL direction
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-1-plus"
+          class="plus"
+          onclick="setPoint(1,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-1-zero"
+          class="zero"
+          onclick="setPoint(1,0)">
+          0
+        </button>
+
+        <button
+          id="xau-1-minus"
+          class="minus"
+          onclick="setPoint(1,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- POINT 3 -->
+    <div class="point">
+
+      <div class="point-name">
+        3. D-POC formed up / down
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-2-plus"
+          class="plus"
+          onclick="setPoint(2,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-2-zero"
+          class="zero"
+          onclick="setPoint(2,0)">
+          0
+        </button>
+
+        <button
+          id="xau-2-minus"
+          class="minus"
+          onclick="setPoint(2,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- POINT 4 -->
+    <div class="point">
+
+      <div class="point-name">
+        4. 15m CVD breaks last swing
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-3-plus"
+          class="plus"
+          onclick="setPoint(3,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-3-zero"
+          class="zero"
+          onclick="setPoint(3,0)">
+          0
+        </button>
+
+        <button
+          id="xau-3-minus"
+          class="minus"
+          onclick="setPoint(3,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- POINT 5 -->
+    <div class="point">
+
+      <div class="point-name">
+        5. Weekly + Daily VWAP direction
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-4-plus"
+          class="plus"
+          onclick="setPoint(4,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-4-zero"
+          class="zero"
+          onclick="setPoint(4,0)">
+          0
+        </button>
+
+        <button
+          id="xau-4-minus"
+          class="minus"
+          onclick="setPoint(4,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- POINT 6 -->
+    <div class="point">
+
+      <div class="point-name">
+        6. Daily VAH / VAL direction
+      </div>
+
+      <div class="point-buttons">
+
+        <button
+          id="xau-5-plus"
+          class="plus"
+          onclick="setPoint(5,1)">
+          +1
+        </button>
+
+        <button
+          id="xau-5-zero"
+          class="zero"
+          onclick="setPoint(5,0)">
+          0
+        </button>
+
+        <button
+          id="xau-5-minus"
+          class="minus"
+          onclick="setPoint(5,-1)">
+          −1
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ELIGIBILITY -->
+    <div
+      id="eligibility"
+      class="eligibility">
+      NOT ELIGIBLE — NEED ±4
+    </div>
+
+  </div>
+
+
+  <!-- PERMANENT RULES -->
+  <div class="card">
+
+    <div class="section-title">
+      PERMANENT TRADING RULES
+    </div>
+
+    <div class="rule">
+      1. ONE TRADE EACH SETUP
+    </div>
+
+    <div class="rule">
+      2. MAX TRADEABLE SETUPS: 2
+    </div>
+
+    <div class="rule">
+      3. TRADE EACH NEW +4 / −4
+    </div>
+
+    <div class="rule">
+      4. TARGET 1:3
+    </div>
+
+  </div>
+
+
+  <!-- MAIN DECISION -->
+  <div class="card">
+
+    <div class="section-title">
+      MAIN DECISION
+    </div>
+
+    <div class="main-decision">
+
+      <div
+        id="mainDecisionTitle"
+        class="main-decision-title">
+        DON’T OVERTRADE
+      </div>
+
+      <div
+        id="mainDecisionText"
+        class="main-decision-text">
+        NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="reset"
+    onclick="resetAll()">
+    RESET ALL
+  </button>
+
+  <div class="small-note">
+    State is saved automatically until Reset.
+  </div>
+
 </div>
-
-
-<!-- =========================================================
-LOCATION
-========================================================= -->
-
-<div class="location-box">
-
-<div class="location-title">
-LOCATION IS MOST IMPORTANT
-</div>
-
-<div class="location-text">
-W-VAH • D-VAH • BETWEEN BAND 1 + VAH •
-BETWEEN VAL + BAND 1 • W • D-VAL • W-VAL
-</div>
-
-</div>
-
-
-<!-- =========================================================
-ENTRY RULES
-========================================================= -->
-
-<div class="entry-rules">
-
-<div class="entry-rules-title">
-ENTRY RULES
-</div>
-
-<div class="entry-rule">
-<span class="entry-rule-number">1:</span>
-Use VWAP Only If Trend Is Confirmed
-(e.g: Price At VWAP + −5 Points + CVD V, Strong)
-</div>
-
-<div class="entry-rule">
-<span class="entry-rule-number">2:</span>
-Price Must Touch Location Properly
-</div>
-
-<div class="entry-rule">
-<span class="entry-rule-number">3:</span>
-Only After That TRD Is Accepted
-(+ Study This One More)
-</div>
-
-<div class="entry-rule">
-<span class="entry-rule-number">4:</span>
-After TRD Price Must Come To Nearby Entry Point,
-Any Suitable Point Only Then Entry,
-Otherwise Watch Only.
-</div>
-
-</div>
-
-
-<!-- =========================================================
-XAU SIX POINTS
-========================================================= -->
-
-<div class="columns">
-
-<div class="card">
-
-<div class="header">
-XAU
-</div>
-
-
-<!-- POINT 1 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 1
-</div>
-
-<div class="point-name">
-W-POC formed upwards / downwards
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,0,1)">
-+1
-</button>
-
-<button onclick="choose(this,0,-1)">
-−1
-</button>
-
-<button onclick="choose(this,0,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- POINT 2 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 2
-</div>
-
-<div class="point-name">
-Weekly VAH / VAL direction
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,1,1)">
-+1
-</button>
-
-<button onclick="choose(this,1,-1)">
-−1
-</button>
-
-<button onclick="choose(this,1,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- POINT 3 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 3
-</div>
-
-<div class="point-name">
-D-POC formed up / down
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,2,1)">
-+1
-</button>
-
-<button onclick="choose(this,2,-1)">
-−1
-</button>
-
-<button onclick="choose(this,2,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- POINT 4 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 4
-</div>
-
-<div class="point-name">
-15m CVD breaks last swing
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,3,1)">
-+1
-</button>
-
-<button onclick="choose(this,3,-1)">
-−1
-</button>
-
-<button onclick="choose(this,3,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- POINT 5 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 5
-</div>
-
-<div class="point-name">
-Weekly + Daily VWAP direction
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,4,1)">
-+1
-</button>
-
-<button onclick="choose(this,4,-1)">
-−1
-</button>
-
-<button onclick="choose(this,4,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- POINT 6 -->
-
-<div class="point">
-
-<div class="point-number">
-POINT 6
-</div>
-
-<div class="point-name">
-Daily VAH / VAL direction
-</div>
-
-<div class="buttons">
-
-<button onclick="choose(this,5,1)">
-+1
-</button>
-
-<button onclick="choose(this,5,-1)">
-−1
-</button>
-
-<button onclick="choose(this,5,0)">
-0
-</button>
-
-</div>
-
-</div>
-
-
-<!-- TOTAL -->
-
-<div class="total">
-
-<div id="xauScore" class="score">
-
-<span class="positive">
-+0
-</span>
-
-&nbsp;&nbsp;
-
-<span class="negative">
-−0
-</span>
-
-</div>
-
-
-<div id="xauStatus" class="status">
-0 / 6 SELECTED
-</div>
-
-
-<div id="xauEligibility" class="eligibility">
-NOT ELIGIBLE
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-PERMANENT TRADING RULES
-========================================================= -->
-
-<div class="rules">
-
-<div class="rules-title">
-PERMANENT TRADING RULES
-</div>
-
-<div class="rule">
-<span class="rule-number">1:</span>
-ONE TRADE EACH SETUP
-</div>
-
-<div class="rule">
-<span class="rule-number">2:</span>
-MAX TRADEABLE SETUPS: 2
-</div>
-
-<div class="rule">
-<span class="rule-number">3:</span>
-TRADE EACH NEW +4 / −4
-</div>
-
-<div class="rule">
-<span class="rule-number">4:</span>
-TARGET 1:3
-</div>
-
-</div>
-
-
-<!-- =========================================================
-MAIN DECISION
-========================================================= -->
-
-<div id="result" class="result wait">
-
-<div class="main">
-DON'T OVERTRADE
-</div>
-
-<div class="sub">
-NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL
-</div>
-
-</div>
-
-
-<!-- =========================================================
-RESET
-========================================================= -->
-
-<button class="reset" onclick="resetAll()">
-RESET
-</button>
 
 
 <script>
 
-
-/* =========================================================
-STORAGE
-========================================================= */
-
-const STORAGE_KEY =
-"xau_strategy_calculator_v3";
+const XAU_KEY = "xau_strategy_calculator_v3";
+const ANALYZER_KEY = "xau_price_cvd_trd_analyzer_v1";
 
 
-/* =========================================================
-CALCULATOR DATA
-========================================================= */
+let xau = [0,0,0,0,0,0];
 
-let xau=[
-null,
-null,
-null,
-null,
-null,
-null
-];
-
-
-/* =========================================================
-SAVE STATE
-========================================================= */
-
-function saveState(){
-
-const state={
-xau:xau
+let analyzer = {
+  location:null,
+  price:null,
+  cvd:null,
+  trd:null
 };
 
-try{
 
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(state)
-);
-
-}catch(e){
-
-console.log(
-"Could not save calculator state."
-);
-
-}
-
-}
-
-
-/* =========================================================
-LOAD STATE
-========================================================= */
+/* =========================
+   LOAD SAVED STATE
+========================= */
 
 function loadState(){
 
-try{
+  try{
 
-const saved=
-JSON.parse(
-localStorage.getItem(STORAGE_KEY)
-);
+    const savedXau = localStorage.getItem(XAU_KEY);
 
-if(!saved){
+    if(savedXau){
+      const parsed = JSON.parse(savedXau);
 
-return;
+      if(Array.isArray(parsed) && parsed.length === 6){
+        xau = parsed;
+      }
+
+    }
+
+  }catch(e){
+    console.log(e);
+  }
+
+
+  try{
+
+    const savedAnalyzer =
+      localStorage.getItem(ANALYZER_KEY);
+
+    if(savedAnalyzer){
+
+      const parsed =
+        JSON.parse(savedAnalyzer);
+
+      if(parsed && typeof parsed === "object"){
+
+        analyzer = {
+          location: parsed.location || null,
+          price: parsed.price || null,
+          cvd: parsed.cvd || null,
+          trd: parsed.trd || null
+        };
+
+      }
+
+    }
+
+  }catch(e){
+    console.log(e);
+  }
 
 }
 
 
-if(
-Array.isArray(saved.xau) &&
-saved.xau.length===6
+/* =========================
+   SAVE STATE
+========================= */
+
+function saveXau(){
+
+  localStorage.setItem(
+    XAU_KEY,
+    JSON.stringify(xau)
+  );
+
+}
+
+
+function saveAnalyzer(){
+
+  localStorage.setItem(
+    ANALYZER_KEY,
+    JSON.stringify(analyzer)
+  );
+
+}
+
+
+/* =========================
+   SIX POINT SYSTEM
+========================= */
+
+function setPoint(index,value){
+
+  xau[index] = value;
+
+  saveXau();
+
+  renderXau();
+
+}
+
+
+/* =========================
+   RENDER SIX POINTS
+========================= */
+
+function renderXau(){
+
+  let positive = 0;
+  let negative = 0;
+  let selected = 0;
+
+
+  xau.forEach((value,index)=>{
+
+    if(value > 0){
+      positive++;
+      selected++;
+
+    }else if(value < 0){
+      negative++;
+      selected++;
+    }
+
+
+    const plus =
+      document.getElementById(
+        `xau-${index}-plus`
+      );
+
+    const zero =
+      document.getElementById(
+        `xau-${index}-zero`
+      );
+
+    const minus =
+      document.getElementById(
+        `xau-${index}-minus`
+      );
+
+
+    plus.classList.toggle(
+      "selected",
+      value === 1
+    );
+
+    zero.classList.toggle(
+      "selected",
+      value === 0
+    );
+
+    minus.classList.toggle(
+      "selected",
+      value === -1
+    );
+
+  });
+
+
+  document.getElementById(
+    "positiveCount"
+  ).textContent = positive;
+
+
+  document.getElementById(
+    "negativeCount"
+  ).textContent = negative;
+
+
+  document.getElementById(
+    "selectedCount"
+  ).textContent = selected;
+
+
+  const eligibility =
+    document.getElementById(
+      "eligibility"
+    );
+
+
+  if(positive >= 4){
+
+    eligibility.textContent =
+      "BULLISH — ELIGIBLE";
+
+    eligibility.className =
+      "eligibility green";
+
+  }else if(negative >= 4){
+
+    eligibility.textContent =
+      "BEARISH — ELIGIBLE";
+
+    eligibility.className =
+      "eligibility red";
+
+  }else{
+
+    eligibility.textContent =
+      "NOT ELIGIBLE — NEED ±4";
+
+    eligibility.className =
+      "eligibility gray";
+
+  }
+
+
+  renderMainDecision(
+    positive,
+    negative
+  );
+
+}
+
+
+/* =========================
+   MAIN DECISION
+========================= */
+
+function renderMainDecision(
+  positive,
+  negative
 ){
 
-xau=saved.xau;
+  const title =
+    document.getElementById(
+      "mainDecisionTitle"
+    );
 
-}
-
-}catch(e){
-
-console.log(
-"Could not load calculator state."
-);
-
-}
-
-}
+  const text =
+    document.getElementById(
+      "mainDecisionText"
+    );
 
 
-/* =========================================================
-BUTTON HIGHLIGHT
-========================================================= */
+  if(positive >= 4){
 
-function highlightButton(
-button,
-value
-){
+    title.textContent =
+      "BULLISH — ELIGIBLE";
 
-button.classList.remove(
-"selected",
-"plus",
-"minus",
-"zero"
-);
+    title.className =
+      "main-decision-title green";
 
-button.classList.add(
-"selected"
-);
+    text.textContent =
+      "FOLLOW BULLISH DIRECTION + LOCATION + PRICE/CVD/TRD CONFIRMATION.";
 
+  }else if(negative >= 4){
 
-if(value===1){
+    title.textContent =
+      "BEARISH — ELIGIBLE";
 
-button.classList.add(
-"plus"
-);
+    title.className =
+      "main-decision-title red";
 
-}else if(value===-1){
+    text.textContent =
+      "FOLLOW BEARISH DIRECTION + LOCATION + PRICE/CVD/TRD CONFIRMATION.";
 
-button.classList.add(
-"minus"
-);
+  }else{
 
-}else{
+    title.textContent =
+      "DON’T OVERTRADE";
 
-button.classList.add(
-"zero"
-);
+    title.className =
+      "main-decision-title gray";
 
-}
+    text.textContent =
+      "NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL";
+
+  }
 
 }
 
 
-/* =========================================================
-CLEAR BUTTON
-========================================================= */
+/* =========================
+   ANALYZER
+========================= */
 
-function clearButton(button){
+function setAnalyzer(type,value){
 
-button.classList.remove(
-"selected",
-"plus",
-"minus",
-"zero"
-);
+  analyzer[type] = value;
 
-}
+  saveAnalyzer();
 
-
-/* =========================================================
-SELECT POINT
-========================================================= */
-
-function choose(
-button,
-pointIndex,
-value
-){
-
-xau[pointIndex]=value;
-
-
-const point=
-button.closest(".point");
-
-
-point
-.querySelectorAll("button")
-.forEach(
-clearButton
-);
-
-
-highlightButton(
-button,
-value
-);
-
-
-saveState();
-
-update();
+  renderAnalyzer();
 
 }
 
 
-/* =========================================================
-CALCULATE SCORE
-========================================================= */
+/* =========================
+   ANALYZER BUTTON DISPLAY
+========================= */
 
-function calculate(){
+function renderAnalyzerButtons(){
 
-let positive=0;
-
-let negative=0;
-
-let selected=0;
-
-
-xau.forEach(
-function(value){
-
-if(value!==null){
-
-selected++;
-
-}
+  const types = [
+    "location",
+    "price",
+    "cvd",
+    "trd"
+  ];
 
 
-if(value===1){
+  types.forEach(type=>{
 
-positive++;
-
-}
-
-
-if(value===-1){
-
-negative++;
-
-}
-
-});
+    const prefix =
+      type === "location"
+        ? "loc"
+        : type;
 
 
-return{
+    const values = {
 
-positive,
-negative,
-selected
+      location:[
+        "W-VAH",
+        "D-VAH",
+        "VAH-B1",
+        "VWAP",
+        "VAL-B1",
+        "D-VAL",
+        "W-VAL",
+        "OTHER"
+      ],
 
-};
+      price:[
+        "UP",
+        "FLAT",
+        "DOWN"
+      ],
 
-}
+      cvd:[
+        "UP",
+        "FLAT",
+        "DOWN"
+      ],
 
+      trd:[
+        "BUY",
+        "NEUTRAL",
+        "SELL"
+      ]
 
-/* =========================================================
-DIRECTION
-========================================================= */
-
-function direction(data){
-
-if(data.positive>=4){
-
-return 1;
-
-}
-
-
-if(data.negative>=4){
-
-return -1;
-
-}
-
-
-return 0;
-
-}
+    };
 
 
-/* =========================================================
-DISPLAY XAU
-========================================================= */
+    values[type].forEach(value=>{
 
-function displayXAU(data){
+      let idValue = value;
 
-const score=
-document.getElementById(
-"xauScore"
-);
+      if(value === "VAH-B1"){
+        idValue = "VAH-B1";
+      }
 
-const status=
-document.getElementById(
-"xauStatus"
-);
-
-const eligibility=
-document.getElementById(
-"xauEligibility"
-);
+      if(value === "VAL-B1"){
+        idValue = "VAL-B1";
+      }
 
 
-score.innerHTML=
-
-'<span class="positive">+'+
-data.positive+
-'</span>&nbsp;&nbsp;'+
-'<span class="negative">−'+
-data.negative+
-'</span>';
+      const element =
+        document.getElementById(
+          `${prefix}-${idValue}`
+        );
 
 
-status.innerHTML=
-data.selected+
-" / 6 SELECTED";
+      if(element){
 
+        let actualValue = value;
 
-const dir=
-direction(data);
+        if(value === "VAH-B1"){
+          actualValue = "VAH + B1";
+        }
 
+        if(value === "VAL-B1"){
+          actualValue = "VAL + B1";
+        }
 
-eligibility.className=
-"eligibility";
+        element.classList.toggle(
+          "selected",
+          analyzer[type] === actualValue
+        );
 
+      }
 
-if(dir===1){
+    });
 
-eligibility.innerHTML=
-"✓ BULLISH — ELIGIBLE";
-
-eligibility.classList.add(
-"bull"
-);
-
-}else if(dir===-1){
-
-eligibility.innerHTML=
-"✓ BEARISH — ELIGIBLE";
-
-eligibility.classList.add(
-"bear"
-);
-
-}else{
-
-eligibility.innerHTML=
-"NOT ELIGIBLE — NEED ±4";
-
-}
+  });
 
 }
 
 
-/* =========================================================
-MAIN RESULT
-========================================================= */
+/* =========================
+   FOUR COMBINATIONS ONLY
+========================= */
 
-function updateResult(data){
+function getAnalyzerResult(){
 
-const result=
-document.getElementById(
-"result"
-);
-
-const dir=
-direction(data);
+  const p = analyzer.price;
+  const c = analyzer.cvd;
+  const t = analyzer.trd;
 
 
-if(dir===1){
+  /*
+    1
+    PRICE ↑
+    CVD ↑
+    BUY
+  */
 
-result.className=
-"result good";
+  if(
+    p === "UP" &&
+    c === "UP" &&
+    t === "BUY"
+  ){
 
+    return {
+      title:"🟢 BULLISH CONTINUATION",
+      className:"green",
+      detail:
+        "Price is moving up, CVD is rising and TRD confirms buying."
+    };
 
-result.innerHTML=`
-
-<div class="main">
-XAU BULLISH — ELIGIBLE
-</div>
-
-<div class="sub">
-+${data.positive} POSITIVE POINTS
-</div>
-
-<div class="small">
-Follow the location and entry rules above.
-Do not enter unless TRD is accepted and price reaches a suitable nearby entry point.
-</div>
-
-`;
-
-return;
-
-}
+  }
 
 
-if(dir===-1){
+  /*
+    2
+    PRICE ↓
+    CVD ↓
+    SELL
+  */
 
-result.className=
-"result bad";
+  if(
+    p === "DOWN" &&
+    c === "DOWN" &&
+    t === "SELL"
+  ){
 
+    return {
+      title:"🔴 BEARISH CONTINUATION",
+      className:"red",
+      detail:
+        "Price is moving down, CVD is falling and TRD confirms selling."
+    };
 
-result.innerHTML=`
-
-<div class="main">
-XAU BEARISH — ELIGIBLE
-</div>
-
-<div class="sub">
-−${data.negative} NEGATIVE POINTS
-</div>
-
-<div class="small">
-Follow the location and entry rules above.
-Do not enter unless TRD is accepted and price reaches a suitable nearby entry point.
-</div>
-
-`;
-
-return;
-
-}
+  }
 
 
-result.className=
-"result wait";
+  /*
+    3
+    PRICE ↑
+    CVD ↓
+    BUY
+  */
+
+  if(
+    p === "UP" &&
+    c === "DOWN" &&
+    t === "BUY"
+  ){
+
+    return {
+      title:"🟢 BUYERS ABSORBING SELLING",
+      className:"green",
+      detail:
+        "Selling pressure is present, but buyers are absorbing it and price is moving up."
+    };
+
+  }
 
 
-result.innerHTML=`
+  /*
+    4
+    PRICE ↓
+    CVD ↑
+    SELL
+  */
 
-<div class="main">
-DON'T OVERTRADE
-</div>
+  if(
+    p === "DOWN" &&
+    c === "UP" &&
+    t === "SELL"
+  ){
 
-<div class="sub">
-NO CLEAR DIRECTION YET — WAIT FOR A ±4 SIGNAL
-</div>
+    return {
+      title:"🔴 SELLERS ABSORBING BUYING",
+      className:"red",
+      detail:
+        "Buying pressure is present, but sellers are absorbing it and price is moving down."
+    };
 
-`;
-
-}
-
-
-/* =========================================================
-UPDATE EVERYTHING
-========================================================= */
-
-function update(){
-
-const data=
-calculate();
+  }
 
 
-displayXAU(data);
+  /*
+    EVERYTHING ELSE
+  */
 
-updateResult(data);
-
-}
-
-
-/* =========================================================
-RESTORE POINT BUTTONS
-========================================================= */
-
-function restoreButtons(){
-
-const card=
-document.querySelector(
-".card"
-);
-
-const points=
-card.querySelectorAll(
-".point"
-);
-
-
-points.forEach(
-function(point,index){
-
-const value=
-xau[index];
-
-
-if(value===null){
-
-return;
+  return {
+    title:"NO CLEAR SETUP",
+    className:"gray",
+    detail:
+      "This Price + CVD + TRD combination is not one of the four confirmed patterns."
+  };
 
 }
 
 
-const buttons=
-point.querySelectorAll(
-"button"
-);
+/* =========================
+   LOCATION CONTEXT
+========================= */
+
+function getLocationContext(){
+
+  const location =
+    analyzer.location;
 
 
-let buttonIndex;
+  if(
+    location === "W-VAH" ||
+    location === "D-VAH" ||
+    location === "VAH + B1"
+  ){
+
+    return "At VAH/resistance: watch how price reacts or breaks and holds.";
+
+  }
 
 
-if(value===1){
+  if(
+    location === "W-VAL" ||
+    location === "D-VAL" ||
+    location === "VAL + B1"
+  ){
 
-buttonIndex=0;
+    return "At VAL/support: watch how price reacts or breaks and holds.";
 
-}else if(value===-1){
+  }
 
-buttonIndex=1;
 
-}else{
+  if(location === "VWAP"){
 
-buttonIndex=2;
+    return "At VWAP: look for respect or acceptance through the area.";
+
+  }
+
+
+  return "";
 
 }
 
 
-highlightButton(
-buttons[buttonIndex],
-value
-);
+/* =========================
+   RENDER ANALYZER
+========================= */
 
-});
+function renderAnalyzer(){
+
+  renderAnalyzerButtons();
+
+
+  const title =
+    document.getElementById(
+      "analyzerResultTitle"
+    );
+
+  const detail =
+    document.getElementById(
+      "analyzerResultDetail"
+    );
+
+
+  if(
+    !analyzer.price ||
+    !analyzer.cvd ||
+    !analyzer.trd
+  ){
+
+    title.textContent =
+      "NO CLEAR SETUP";
+
+    title.className =
+      "result-title gray";
+
+    detail.textContent =
+      "Select Location, Price, CVD and TRD.";
+
+    return;
+
+  }
+
+
+  const result =
+    getAnalyzerResult();
+
+
+  title.textContent =
+    result.title;
+
+  title.className =
+    "result-title " +
+    result.className;
+
+
+  let locationText =
+    getLocationContext();
+
+
+  if(analyzer.location){
+
+    if(locationText){
+
+      detail.textContent =
+        result.detail +
+        " " +
+        locationText;
+
+    }else{
+
+      detail.textContent =
+        result.detail;
+
+    }
+
+  }else{
+
+    detail.textContent =
+      result.detail +
+      " Select a location.";
+
+  }
 
 }
 
 
-/* =========================================================
-RESET
-========================================================= */
+/* =========================
+   CLEAR ANALYZER
+========================= */
+
+function clearAnalyzer(){
+
+  analyzer = {
+    location:null,
+    price:null,
+    cvd:null,
+    trd:null
+  };
+
+
+  localStorage.removeItem(
+    ANALYZER_KEY
+  );
+
+
+  renderAnalyzer();
+
+}
+
+
+/* =========================
+   RESET EVERYTHING
+========================= */
 
 function resetAll(){
 
-const confirmed=
-confirm(
-"Reset all XAU points?"
-);
+  xau = [0,0,0,0,0,0];
+
+  analyzer = {
+    location:null,
+    price:null,
+    cvd:null,
+    trd:null
+  };
 
 
-if(!confirmed){
+  localStorage.removeItem(
+    XAU_KEY
+  );
 
-return;
-
-}
-
-
-xau=[
-null,
-null,
-null,
-null,
-null,
-null
-];
+  localStorage.removeItem(
+    ANALYZER_KEY
+  );
 
 
-localStorage.removeItem(
-STORAGE_KEY
-);
+  renderXau();
 
-
-document
-.querySelectorAll(
-".point button"
-)
-.forEach(
-function(button){
-
-clearButton(
-button
-);
-
-});
-
-
-update();
+  renderAnalyzer();
 
 }
 
 
-/* =========================================================
-INITIALIZE
-========================================================= */
+/* =========================
+   START
+========================= */
 
 loadState();
 
-restoreButtons();
+renderXau();
 
-update();
+renderAnalyzer();
 
 </script>
 
