@@ -3,179 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XAU / XAG — Trade Decision</title>
+<title>XAU / XAG — Location & TRD</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        background: #0b0d10;
-        color: #f1f3f5;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+body {
+    margin: 0;
+    background: #0b0d10;
+    color: #f1f3f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 
+.container {
+    max-width: 780px;
+    margin: auto;
+    padding: 16px;
+}
+
+h1 {
+    text-align: center;
+    margin: 5px 0 4px;
+    font-size: 25px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #8b929c;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #15181d;
+    border: 1px solid #292e36;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.metal-title {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.section {
+    margin-bottom: 19px;
+}
+
+.label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #858c96;
+    margin-bottom: 9px;
+    font-weight: 700;
+}
+
+.group-title {
+    color: #cbd0d6;
+    font-size: 12px;
+    margin: 12px 0 7px;
+    font-weight: 700;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+button {
+    border: 1px solid #303640;
+    background: #1b1f25;
+    color: #dce0e5;
+    padding: 12px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+button.selected {
+    background: #30353d;
+    border-color: #e5e7eb;
+    color: #fff;
+}
+
+.bull.selected {
+    background: #173d2a;
+    border-color: #35c979;
+    color: #68e39b;
+}
+
+.bear.selected {
+    background: #431c22;
+    border-color: #f05d68;
+    color: #ff8991;
+}
+
+.neutral.selected {
+    background: #30353d;
+}
+
+.location-selected {
+    background: #302d18 !important;
+    border-color: #d5b84a !important;
+    color: #f0d66b !important;
+}
+
+.scenario {
+    border: 1px solid #343a43;
+    background: #111419;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 8px;
+}
+
+.scenario-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.scenario-text {
+    color: #aeb5be;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.watch {
+    margin-top: 10px;
+    padding: 9px;
+    border-radius: 8px;
+    background: #1c2026;
+    color: #d4d8dd;
+    font-size: 12px;
+}
+
+.final {
+    border-radius: 13px;
+    padding: 17px 12px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 900;
+    margin-top: 6px;
+}
+
+.buy {
+    background: #123521;
+    border: 1px solid #2dbb6d;
+    color: #61e39a;
+}
+
+.sell {
+    background: #3d171c;
+    border: 1px solid #e25360;
+    color: #ff818a;
+}
+
+.wait {
+    background: #20242a;
+    border: 1px solid #3a4049;
+    color: #b9c0c9;
+}
+
+.danger {
+    background: #402c12;
+    border: 1px solid #d89a32;
+    color: #f3bd5c;
+}
+
+.reason {
+    text-align: center;
+    color: #8d949e;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 8px;
+    min-height: 18px;
+}
+
+.context-box {
+    background: #111419;
+    border: 1px solid #282d35;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.context-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #242930;
+    font-size: 12px;
+}
+
+.context-row:last-child {
+    border-bottom: none;
+}
+
+.context-name {
+    color: #858c96;
+}
+
+.reset {
+    width: 100%;
+    margin: 3px 0 20px;
+    background: #171a1f;
+    color: #aeb5be;
+}
+
+.rules {
+    color: #858c96;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.rules strong {
+    color: #cfd4da;
+}
+
+@media (max-width: 500px) {
     .container {
-        max-width: 760px;
-        margin: auto;
-        padding: 18px;
-    }
-
-    h1 {
-        text-align: center;
-        margin: 5px 0 4px;
-        font-size: 25px;
-    }
-
-    .subtitle {
-        text-align: center;
-        color: #8d949e;
-        font-size: 13px;
-        margin-bottom: 22px;
-    }
-
-    .card {
-        background: #15181d;
-        border: 1px solid #292e36;
-        border-radius: 16px;
-        padding: 17px;
-        margin-bottom: 16px;
-    }
-
-    .metal-title {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 16px;
-    }
-
-    .section {
-        margin-bottom: 18px;
-    }
-
-    .label {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: .8px;
-        color: #8d949e;
-        margin-bottom: 9px;
+        padding: 11px;
     }
 
     .buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7px;
+        grid-template-columns: 1fr 1fr;
     }
 
-    button {
-        border: 1px solid #303640;
-        background: #1b1f25;
-        color: #dce0e5;
-        padding: 12px 7px;
-        border-radius: 10px;
-        font-size: 13px;
-        cursor: pointer;
+    h1 {
+        font-size: 23px;
     }
-
-    button:active {
-        transform: scale(.98);
-    }
-
-    button.selected {
-        border-color: #e5e7eb;
-        background: #30353d;
-        color: white;
-    }
-
-    .bull.selected {
-        background: #173d2a;
-        border-color: #35c979;
-        color: #68e39b;
-    }
-
-    .bear.selected {
-        background: #431c22;
-        border-color: #f05d68;
-        color: #ff8991;
-    }
-
-    .neutral.selected {
-        background: #30353d;
-    }
-
-    .final {
-        border-radius: 13px;
-        padding: 16px;
-        text-align: center;
-        font-size: 19px;
-        font-weight: 800;
-        margin-top: 5px;
-    }
-
-    .buy {
-        background: #123521;
-        border: 1px solid #2dbb6d;
-        color: #61e39a;
-    }
-
-    .sell {
-        background: #3d171c;
-        border: 1px solid #e25360;
-        color: #ff818a;
-    }
-
-    .wait {
-        background: #20242a;
-        border: 1px solid #3a4049;
-        color: #b9c0c9;
-    }
-
-    .danger {
-        background: #402c12;
-        border: 1px solid #d89a32;
-        color: #f3bd5c;
-    }
-
-    .reason {
-        text-align: center;
-        color: #8d949e;
-        font-size: 12px;
-        margin-top: 8px;
-        min-height: 16px;
-    }
-
-    .reset {
-        width: 100%;
-        margin-top: 5px;
-        background: #171a1f;
-        color: #aeb5be;
-    }
-
-    .rules {
-        color: #858c96;
-        font-size: 12px;
-        line-height: 1.7;
-        padding: 5px 3px 15px;
-    }
-
-    .rules strong {
-        color: #cfd4da;
-    }
-
-    @media (max-width: 500px) {
-        .container {
-            padding: 12px;
-        }
-
-        .buttons {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        h1 {
-            font-size: 23px;
-        }
-    }
+}
 </style>
 </head>
 
@@ -183,24 +251,30 @@
 
 <div class="container">
 
-    <h1>XAU / XAG Trade Decision</h1>
-    <div class="subtitle">
-        LOCATION → DIRECTION → BUBBLE → REACTION
-    </div>
+<h1>XAU / XAG Trade Decision</h1>
 
-    <div id="app"></div>
+<div class="subtitle">
+LOCATION → SCENARIO → TRD → REACTION
+</div>
 
-    <div class="card rules">
-        <strong>RULES</strong><br>
-        1. No valid location = no trade.<br>
-        2. Direction must be clear.<br>
-        3. Bubble must confirm the direction.<br>
-        4. Price must actually react in that direction.<br>
-        5. Major gold news = no trade.<br>
-        6. One trade per setup.<br>
-        7. Target 1:3 or better.<br>
-        8. No early closing. BE only according to your plan.
-    </div>
+<div id="app"></div>
+
+<div class="card rules">
+
+<strong>CORE RULES</strong><br>
+
+1. Location tells you where to watch — not automatically where to trade.<br>
+2. At VAH / VAL, look for rejection OR acceptance.<br>
+3. TRD = BIG BUBBLE + PRICE MOVED WITH IT.<br>
+4. Rejection + confirming TRD = reversal opportunity.<br>
+5. Acceptance beyond a major level + confirming TRD = continuation opportunity.<br>
+6. No clear TRD = WAIT.<br>
+7. Major gold news = NO TRADE.<br>
+8. One trade per setup.<br>
+9. Target 1:3 or better.<br>
+10. No early closing. BE only according to your plan.
+
+</div>
 
 </div>
 
@@ -208,292 +282,999 @@
 
 const metals = ["XAU", "XAG"];
 
+/*
+========================================================
+LOCATION
+========================================================
+*/
+
 const locations = [
-    "NONE",
-    "Daily VWAP",
-    "Daily VAH",
-    "Daily VAL",
-    "Weekly VAH",
-    "Weekly VAL"
-];
 
-const directions = [
-    "UNCLEAR",
-    "BULLISH",
-    "BEARISH"
-];
-
-const bubbles = [
-    "NONE",
-    "BULLISH",
-    "BEARISH"
-];
-
-const reactions = [
-    "WAIT",
-    "BULLISH",
-    "BEARISH",
-    "FAILED"
-];
-
-const state = JSON.parse(
-    localStorage.getItem("trade_decision_v1")
-) || {
-    XAU: {
-        location: "NONE",
-        direction: "UNCLEAR",
-        bubble: "NONE",
-        reaction: "WAIT"
+    {
+        id: "below_val_band",
+        name: "Below VAL + Band −1",
+        group: "LOWER"
     },
-    XAG: {
-        location: "NONE",
-        direction: "UNCLEAR",
-        bubble: "NONE",
-        reaction: "WAIT"
+
+    {
+        id: "between_val_band",
+        name: "Between VAL & Band −1",
+        group: "LOWER"
+    },
+
+    {
+        id: "at_val",
+        name: "AT Daily VAL",
+        group: "LOWER"
+    },
+
+    {
+        id: "between_val_vwap",
+        name: "Between VAL & VWAP",
+        group: "LOWER"
+    },
+
+    {
+        id: "at_vwap",
+        name: "AT Daily VWAP",
+        group: "CENTER"
+    },
+
+    {
+        id: "between_vwap_vah",
+        name: "Between VWAP & VAH",
+        group: "UPPER"
+    },
+
+    {
+        id: "at_vah",
+        name: "AT Daily VAH",
+        group: "UPPER"
+    },
+
+    {
+        id: "between_band_vah",
+        name: "Between Band +1 & VAH",
+        group: "UPPER"
+    },
+
+    {
+        id: "above_vah_band",
+        name: "Above VAH + Band +1",
+        group: "UPPER"
+    },
+
+    {
+        id: "at_weekly_val",
+        name: "AT Weekly VAL",
+        group: "WEEKLY"
+    },
+
+    {
+        id: "at_weekly_vah",
+        name: "AT Weekly VAH",
+        group: "WEEKLY"
+    },
+
+    {
+        id: "between_weekly_val_daily_val",
+        name: "Between Weekly VAL & Daily VAL",
+        group: "WEEKLY"
+    },
+
+    {
+        id: "between_daily_vah_weekly_vah",
+        name: "Between Daily VAH & Weekly VAH",
+        group: "WEEKLY"
+    },
+
+    {
+        id: "multiple_levels",
+        name: "Multiple Levels Overlap",
+        group: "SPECIAL"
+    },
+
+    {
+        id: "none",
+        name: "NO IMPORTANT LOCATION",
+        group: "SPECIAL"
     }
+];
+
+/*
+========================================================
+CONTEXT
+========================================================
+*/
+
+const contextFields = [
+    "VWAP",
+    "15m CVD",
+    "D-POC",
+    "15m Structure",
+    "W-POC"
+];
+
+const contextValues = [
+    "NEUTRAL",
+    "BULLISH",
+    "BEARISH"
+];
+
+/*
+========================================================
+TRD
+TRD is NOT just a bubble.
+TRD = BIG BUBBLE + PRICE ACTUALLY MOVED WITH IT.
+========================================================
+*/
+
+const trdValues = [
+    "NONE",
+    "BULLISH TRD",
+    "BEARISH TRD"
+];
+
+/*
+========================================================
+STATE
+========================================================
+*/
+
+const defaultMetal = {
+
+    context: {
+        "VWAP": "NEUTRAL",
+        "15m CVD": "NEUTRAL",
+        "D-POC": "NEUTRAL",
+        "15m Structure": "NEUTRAL",
+        "W-POC": "NEUTRAL"
+    },
+
+    location: "none",
+
+    trd: "NONE"
 };
 
-function save() {
-    localStorage.setItem(
-        "trade_decision_v1",
-        JSON.stringify(state)
-    );
+const saved =
+    JSON.parse(localStorage.getItem("location_trd_v2"));
+
+const state = saved || {
+    XAU: JSON.parse(JSON.stringify(defaultMetal)),
+    XAG: JSON.parse(JSON.stringify(defaultMetal))
+};
+
+/*
+========================================================
+LOCATION SCENARIOS
+========================================================
+*/
+
+function getScenario(locationId) {
+
+    switch(locationId) {
+
+        case "below_val_band":
+            return {
+                title: "BEARISH ACCEPTANCE AREA",
+                text:
+                "Price is below both Daily VAL and VWAP Band −1. " +
+                "The important question is whether price is accepting below the area or reclaiming it.",
+                watch:
+                "Bearish TRD + continued movement below → SELL continuation. " +
+                "Bullish TRD alone is not enough; look for a reclaim."
+            };
+
+        case "between_val_band":
+            return {
+                title: "LOWER SUPPORT / REJECTION ZONE",
+                text:
+                "Price is between Daily VAL and VWAP Band −1. " +
+                "This is an area where rejection can occur.",
+                watch:
+                "Bullish TRD + upward reaction → BUY opportunity. " +
+                "Bearish TRD + acceptance below both → bearish continuation."
+            };
+
+        case "at_val":
+            return {
+                title: "DAILY VAL — IMPORTANT SUPPORT",
+                text:
+                "Price is directly at Daily VAL. Do not automatically buy or sell.",
+                watch:
+                "Bullish TRD + rejection upward → BUY. " +
+                "Bearish TRD + acceptance below → SELL continuation."
+            };
+
+        case "between_val_vwap":
+            return {
+                title: "LOWER VALUE AREA",
+                text:
+                "Price is between Daily VAL and VWAP. This is generally a transition area.",
+                watch:
+                "Avoid chasing in the middle. Wait for a meaningful location and clear TRD."
+            };
+
+        case "at_vwap":
+            return {
+                title: "DAILY VWAP — DECISION AREA",
+                text:
+                "Price is at Daily VWAP. VWAP is the center and can produce both continuation and rejection.",
+                watch:
+                "Clear directional TRD + price response → possible trade. " +
+                "Repeated VWAP crossings with no progress → NO TRADE."
+            };
+
+        case "between_vwap_vah":
+            return {
+                title: "UPPER VALUE AREA",
+                text:
+                "Price is between VWAP and Daily VAH.",
+                watch:
+                "Do not buy simply because price is above VWAP. " +
+                "Watch what happens as price approaches VAH / Band +1."
+            };
+
+        case "at_vah":
+            return {
+                title: "DAILY VAH — IMPORTANT RESISTANCE",
+                text:
+                "Price is directly at Daily VAH. This is a major decision point.",
+                watch:
+                "Bearish TRD + rejection downward → SELL opportunity. " +
+                "Bullish TRD + acceptance above → BUY continuation."
+            };
+
+        case "between_band_vah":
+            return {
+                title: "UPPER REJECTION ZONE",
+                text:
+                "Price is between VWAP Band +1 and Daily VAH. " +
+                "This area can produce rejection before continuation.",
+                watch:
+                "Bearish TRD + downward reaction → SELL. " +
+                "Bullish TRD + acceptance above VAH/Band +1 → BUY continuation."
+            };
+
+        case "above_vah_band":
+            return {
+                title: "BULLISH ACCEPTANCE AREA",
+                text:
+                "Price is above both Daily VAH and VWAP Band +1.",
+                watch:
+                "Bullish TRD + continued movement above → BUY continuation. " +
+                "Bearish TRD is not an automatic short; wait for a reclaim/rejection."
+            };
+
+        case "at_weekly_val":
+            return {
+                title: "WEEKLY VAL — MAJOR SUPPORT",
+                text:
+                "Price is interacting with Weekly VAL. This can be stronger than an ordinary intraday location.",
+                watch:
+                "Bullish TRD + rejection upward → BUY opportunity. " +
+                "Acceptance below + bearish TRD → SELL continuation."
+            };
+
+        case "at_weekly_vah":
+            return {
+                title: "WEEKLY VAH — MAJOR RESISTANCE",
+                text:
+                "Price is interacting with Weekly VAH. This can be a powerful rejection or breakout area.",
+                watch:
+                "Bearish TRD + rejection → SELL. " +
+                "Acceptance above + bullish TRD → BUY continuation."
+            };
+
+        case "between_weekly_val_daily_val":
+            return {
+                title: "OVERLAPPING LOWER VALUE LEVELS",
+                text:
+                "Weekly VAL and Daily VAL are creating a larger support area.",
+                watch:
+                "Strong bullish TRD + rejection → BUY. " +
+                "Acceptance below the combined area + bearish TRD → SELL continuation."
+            };
+
+        case "between_daily_vah_weekly_vah":
+            return {
+                title: "OVERLAPPING UPPER VALUE LEVELS",
+                text:
+                "Daily VAH and Weekly VAH are creating a larger resistance area.",
+                watch:
+                "Strong bearish TRD + rejection → SELL. " +
+                "Acceptance above the combined area + bullish TRD → BUY continuation."
+            };
+
+        case "multiple_levels":
+            return {
+                title: "MULTIPLE LEVELS OVERLAPPING",
+                text:
+                "Several important levels are close together. This can create a stronger reaction zone, but also more complexity.",
+                watch:
+                "Wait for a very clear TRD and price response. If behavior is messy → NO TRADE."
+            };
+
+        default:
+            return {
+                title: "NO LOCATION",
+                text:
+                "Price is not at one of your predefined trading locations.",
+                watch:
+                "No location = no trade."
+            };
+    }
 }
 
-function button(label, type, metal, field, value) {
+/*
+========================================================
+BUTTON
+========================================================
+*/
 
-    const selected =
-        state[metal][field] === value
-            ? "selected"
-            : "";
+function makeButton(
+    label,
+    css,
+    action
+) {
 
     return `
         <button
-            class="${type} ${selected}"
-            onclick="setValue('${metal}','${field}','${value}')">
+            class="${css}"
+            onclick="${action}">
             ${label}
         </button>
     `;
 }
 
+/*
+========================================================
+CONTEXT BUTTON
+========================================================
+*/
+
+function contextButton(
+    metal,
+    field,
+    value
+) {
+
+    const selected =
+        state[metal].context[field] === value
+            ? "selected"
+            : "";
+
+    let css = selected;
+
+    if (value === "BULLISH")
+        css += " bull";
+
+    if (value === "BEARISH")
+        css += " bear";
+
+    return `
+        <button
+            class="${css}"
+            onclick="setContext('${metal}','${field}','${value}')">
+            ${value}
+        </button>
+    `;
+}
+
+/*
+========================================================
+LOCATION BUTTON
+========================================================
+*/
+
+function locationButton(
+    metal,
+    location
+) {
+
+    const selected =
+        state[metal].location === location.id
+            ? "selected location-selected"
+            : "";
+
+    return `
+        <button
+            class="${selected}"
+            onclick="setLocation('${metal}','${location.id}')">
+            ${location.name}
+        </button>
+    `;
+}
+
+/*
+========================================================
+TRD BUTTON
+========================================================
+*/
+
+function trdButton(
+    metal,
+    value
+) {
+
+    const selected =
+        state[metal].trd === value
+            ? "selected"
+            : "";
+
+    let css = selected;
+
+    if (value === "BULLISH TRD")
+        css += " bull";
+
+    if (value === "BEARISH TRD")
+        css += " bear";
+
+    if (value === "NONE")
+        css += " neutral";
+
+    return `
+        <button
+            class="${css}"
+            onclick="setTRD('${metal}','${value}')">
+            ${value}
+        </button>
+    `;
+}
+
+/*
+========================================================
+FINAL DECISION
+========================================================
+*/
+
+function getDecision(metal) {
+
+    const s = state[metal];
+
+    if (s.location === "none") {
+
+        return {
+            result: "WAIT",
+            className: "wait",
+            reason: "No important location."
+        };
+    }
+
+    if (s.location === "at_vwap") {
+
+        if (s.trd === "NONE") {
+            return {
+                result: "WAIT",
+                className: "wait",
+                reason: "Waiting for clear TRD at VWAP."
+            };
+        }
+
+        if (s.trd === "BULLISH TRD") {
+            return {
+                result: "BUY SETUP",
+                className: "buy",
+                reason:
+                "Bullish TRD confirmed at VWAP."
+            };
+        }
+
+        if (s.trd === "BEARISH TRD") {
+            return {
+                result: "SELL SETUP",
+                className: "sell",
+                reason:
+                "Bearish TRD confirmed at VWAP."
+            };
+        }
+    }
+
+    /*
+    LOWER LOCATIONS
+    */
+
+    const lower = [
+        "below_val_band",
+        "between_val_band",
+        "at_val",
+        "at_weekly_val",
+        "between_weekly_val_daily_val"
+    ];
+
+    if (lower.includes(s.location)) {
+
+        if (s.trd === "BULLISH TRD") {
+            return {
+                result: "BUY SETUP",
+                className: "buy",
+                reason:
+                "Bullish TRD confirms rejection from the lower location."
+            };
+        }
+
+        if (s.trd === "BEARISH TRD") {
+            return {
+                result: "SELL / CONTINUATION",
+                className: "sell",
+                reason:
+                "Bearish TRD confirms downside acceptance/continuation."
+            };
+        }
+
+        return {
+            result: "WAIT",
+            className: "wait",
+            reason:
+            "Wait for bullish rejection or bearish acceptance with TRD."
+        };
+    }
+
+    /*
+    UPPER LOCATIONS
+    */
+
+    const upper = [
+        "between_vwap_vah",
+        "at_vah",
+        "between_band_vah",
+        "above_vah_band",
+        "at_weekly_vah",
+        "between_daily_vah_weekly_vah"
+    ];
+
+    if (upper.includes(s.location)) {
+
+        if (s.trd === "BEARISH TRD") {
+            return {
+                result: "SELL SETUP",
+                className: "sell",
+                reason:
+                "Bearish TRD confirms rejection from the upper location."
+            };
+        }
+
+        if (s.trd === "BULLISH TRD") {
+            return {
+                result: "BUY / CONTINUATION",
+                className: "buy",
+                reason:
+                "Bullish TRD confirms upside acceptance/continuation."
+            };
+        }
+
+        return {
+            result: "WAIT",
+            className: "wait",
+            reason:
+            "Wait for rejection or acceptance with clear TRD."
+        };
+    }
+
+    /*
+    TRANSITION / SPECIAL
+    */
+
+    if (s.location === "between_val_vwap") {
+
+        return {
+            result: "WAIT",
+            className: "wait",
+            reason:
+            "This is a transition area. Wait for a better location."
+        };
+    }
+
+    if (s.location === "multiple_levels") {
+
+        if (s.trd === "BULLISH TRD") {
+            return {
+                result: "POSSIBLE BUY",
+                className: "buy",
+                reason:
+                "Multiple levels + bullish TRD. Confirm clean reaction before entry."
+            };
+        }
+
+        if (s.trd === "BEARISH TRD") {
+            return {
+                result: "POSSIBLE SELL",
+                className: "sell",
+                reason:
+                "Multiple levels + bearish TRD. Confirm clean reaction before entry."
+            };
+        }
+
+        return {
+            result: "WAIT",
+            className: "wait",
+            reason:
+            "Multiple levels require a very clear TRD."
+        };
+    }
+
+    return {
+        result: "WAIT",
+        className: "wait",
+        reason: "No complete setup."
+    };
+}
+
+/*
+========================================================
+RENDER METAL
+========================================================
+*/
+
 function renderMetal(metal) {
 
     const s = state[metal];
+
+    const selectedLocation =
+        locations.find(x => x.id === s.location);
+
+    const scenario =
+        getScenario(s.location);
+
+    const decision =
+        getDecision(metal);
 
     return `
     <div class="card">
 
         <div class="metal-title">${metal}</div>
 
-        <div class="section">
-            <div class="label">1. Location</div>
-
-            <div class="buttons">
-                ${locations.map(x =>
-                    button(
-                        x,
-                        x === "NONE" ? "neutral" : "",
-                        metal,
-                        "location",
-                        x
-                    )
-                ).join("")}
-            </div>
-        </div>
+        <!-- CONTEXT -->
 
         <div class="section">
-            <div class="label">2. Direction</div>
 
-            <div class="buttons">
-                ${directions.map(x =>
-                    button(
-                        x,
-                        x === "BULLISH"
-                            ? "bull"
-                            : x === "BEARISH"
-                                ? "bear"
-                                : "neutral",
-                        metal,
-                        "direction",
-                        x
-                    )
-                ).join("")}
+            <div class="label">
+                1. Market Context — DO NOT COUNT
             </div>
+
+            <div class="context-box">
+
+                ${contextFields.map(field => `
+
+                    <div class="context-row">
+
+                        <span class="context-name">
+                            ${field}
+                        </span>
+
+                        <div style="
+                            display:grid;
+                            grid-template-columns:
+                            repeat(3,auto);
+                            gap:4px;
+                        ">
+
+                            ${contextValues.map(value =>
+                                contextButton(
+                                    metal,
+                                    field,
+                                    value
+                                )
+                            ).join("")}
+
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
         </div>
+
+        <!-- LOCATION -->
 
         <div class="section">
-            <div class="label">3. Bubble / TRD</div>
+
+            <div class="label">
+                2. Where is price?
+            </div>
+
+            <div class="group-title">
+                LOWER
+            </div>
 
             <div class="buttons">
-                ${bubbles.map(x =>
-                    button(
-                        x,
-                        x === "BULLISH"
-                            ? "bull"
-                            : x === "BEARISH"
-                                ? "bear"
-                                : "neutral",
-                        metal,
-                        "bubble",
-                        x
-                    )
-                ).join("")}
+
+                ${locations
+                    .filter(x => x.group === "LOWER")
+                    .map(x => locationButton(metal,x))
+                    .join("")}
+
             </div>
+
+            <div class="group-title">
+                CENTER
+            </div>
+
+            <div class="buttons">
+
+                ${locations
+                    .filter(x => x.group === "CENTER")
+                    .map(x => locationButton(metal,x))
+                    .join("")}
+
+            </div>
+
+            <div class="group-title">
+                UPPER
+            </div>
+
+            <div class="buttons">
+
+                ${locations
+                    .filter(x => x.group === "UPPER")
+                    .map(x => locationButton(metal,x))
+                    .join("")}
+
+            </div>
+
+            <div class="group-title">
+                WEEKLY
+            </div>
+
+            <div class="buttons">
+
+                ${locations
+                    .filter(x => x.group === "WEEKLY")
+                    .map(x => locationButton(metal,x))
+                    .join("")}
+
+            </div>
+
+            <div class="group-title">
+                SPECIAL
+            </div>
+
+            <div class="buttons">
+
+                ${locations
+                    .filter(x => x.group === "SPECIAL")
+                    .map(x => locationButton(metal,x))
+                    .join("")}
+
+            </div>
+
         </div>
+
+        <!-- SCENARIO -->
 
         <div class="section">
-            <div class="label">4. Price Reaction</div>
 
-            <div class="buttons">
-                ${reactions.map(x =>
-                    button(
-                        x,
-                        x === "BULLISH"
-                            ? "bull"
-                            : x === "BEARISH"
-                                ? "bear"
-                                : "neutral",
-                        metal,
-                        "reaction",
-                        x
-                    )
-                ).join("")}
+            <div class="label">
+                3. Scenario
             </div>
+
+            <div class="scenario">
+
+                <div class="scenario-title">
+                    ${scenario.title}
+                </div>
+
+                <div class="scenario-text">
+                    ${scenario.text}
+                </div>
+
+                <div class="watch">
+                    <strong>WATCH:</strong>
+                    ${scenario.watch}
+                </div>
+
+            </div>
+
         </div>
 
-        ${decision(metal)}
+        <!-- TRD -->
+
+        <div class="section">
+
+            <div class="label">
+                4. TRD — BIG BUBBLE + PRICE MOVED
+            </div>
+
+            <div class="buttons">
+
+                ${trdValues.map(value =>
+                    trdButton(metal,value)
+                ).join("")}
+
+            </div>
+
+        </div>
+
+        <!-- FINAL -->
+
+        <div class="section">
+
+            <div class="label">
+                5. Final Decision
+            </div>
+
+            <div class="final ${decision.className}">
+                ${decision.result}
+            </div>
+
+            <div class="reason">
+                ${decision.reason}
+            </div>
+
+        </div>
 
     </div>
     `;
 }
 
-function decision(metal) {
+/*
+========================================================
+SETTERS
+========================================================
+*/
 
-    const s = state[metal];
+function setContext(
+    metal,
+    field,
+    value
+) {
 
-    let result = "WAIT";
-    let className = "wait";
-    let reason = "Complete the setup";
-
-    if (s.location === "NONE") {
-
-        result = "WAIT";
-        reason = "No valid location";
-
-    } else if (s.direction === "UNCLEAR") {
-
-        result = "WAIT";
-        reason = "Direction unclear";
-
-    } else if (s.bubble === "NONE") {
-
-        result = "WAIT";
-        reason = "Waiting for Bubble confirmation";
-
-    } else if (s.bubble !== s.direction) {
-
-        result = "DANGER";
-        className = "danger";
-        reason = "Bubble disagrees with direction";
-
-    } else if (s.reaction === "WAIT") {
-
-        result = "WAIT";
-        reason = "Waiting for price reaction";
-
-    } else if (s.reaction === "FAILED") {
-
-        result = "DANGER";
-        className = "danger";
-        reason = "Reaction failed";
-
-    } else if (s.reaction !== s.direction) {
-
-        result = "WAIT";
-        reason = "Price reaction disagrees";
-
-    } else if (
-        s.direction === "BULLISH" &&
-        s.bubble === "BULLISH" &&
-        s.reaction === "BULLISH"
-    ) {
-
-        result = "BUY SETUP";
-        className = "buy";
-        reason = "Direction + location + Bubble + reaction aligned";
-
-    } else if (
-        s.direction === "BEARISH" &&
-        s.bubble === "BEARISH" &&
-        s.reaction === "BEARISH"
-    ) {
-
-        result = "SELL SETUP";
-        className = "sell";
-        reason = "Direction + location + Bubble + reaction aligned";
-    }
-
-    return `
-        <div class="final ${className}">
-            ${result}
-        </div>
-        <div class="reason">
-            ${reason}
-        </div>
-    `;
-}
-
-function setValue(metal, field, value) {
-
-    state[metal][field] = value;
-
-    /*
-      If direction changes, old Bubble/Reaction
-      shouldn't automatically create a trade.
-    */
-    if (field === "direction") {
-        state[metal].bubble = "NONE";
-        state[metal].reaction = "WAIT";
-    }
-
-    if (field === "location") {
-        state[metal].reaction = "WAIT";
-    }
-
-    if (field === "bubble") {
-        state[metal].reaction = "WAIT";
-    }
+    state[metal].context[field] = value;
 
     save();
     render();
 }
+
+function setLocation(
+    metal,
+    location
+) {
+
+    state[metal].location = location;
+
+    /*
+    Changing location means we want a fresh
+    reaction at the new location.
+    */
+    state[metal].trd = "NONE";
+
+    save();
+    render();
+}
+
+function setTRD(
+    metal,
+    value
+) {
+
+    state[metal].trd = value;
+
+    save();
+    render();
+}
+
+/*
+========================================================
+SAVE
+========================================================
+*/
+
+function save() {
+
+    localStorage.setItem(
+        "location_trd_v2",
+        JSON.stringify(state)
+    );
+}
+
+/*
+========================================================
+RESET
+========================================================
+*/
 
 function resetAll() {
 
-    state.XAU = {
-        location: "NONE",
-        direction: "UNCLEAR",
-        bubble: "NONE",
-        reaction: "WAIT"
-    };
+    state.XAU =
+        JSON.parse(JSON.stringify(defaultMetal));
 
-    state.XAG = {
-        location: "NONE",
-        direction: "UNCLEAR",
-        bubble: "NONE",
-        reaction: "WAIT"
-    };
+    state.XAG =
+        JSON.parse(JSON.stringify(defaultMetal));
 
     save();
     render();
 }
+
+/*
+========================================================
+PAIR SELECTION
+========================================================
+*/
+
+function pairSelection() {
+
+    const xau = getDecision("XAU");
+    const xag = getDecision("XAG");
+
+    let text = "NO TRADE";
+
+    if (
+        xau.result.includes("BUY") ||
+        xau.result.includes("SELL")
+    ) {
+
+        if (
+            !xag.result.includes("BUY") &&
+            !xag.result.includes("SELL")
+        ) {
+            text = "XAU";
+        }
+    }
+
+    if (
+        xag.result.includes("BUY") ||
+        xag.result.includes("SELL")
+    ) {
+
+        if (
+            !xau.result.includes("BUY") &&
+            !xau.result.includes("SELL")
+        ) {
+            text = "XAG";
+        }
+    }
+
+    if (
+        (
+            xau.result.includes("BUY") ||
+            xau.result.includes("SELL")
+        ) &&
+        (
+            xag.result.includes("BUY") ||
+            xag.result.includes("SELL")
+        )
+    ) {
+        text = "CHOOSE CLEANER SETUP";
+    }
+
+    return text;
+}
+
+/*
+========================================================
+MAIN RENDER
+========================================================
+*/
 
 function render() {
 
     document.getElementById("app").innerHTML =
+
         metals.map(renderMetal).join("") +
+
         `
-        <button class="reset" onclick="resetAll()">
+        <div class="card">
+
+            <div class="label">
+                PAIR SELECTION
+            </div>
+
+            <div class="final wait">
+                ${pairSelection()}
+            </div>
+
+            <div class="reason">
+                Choose the cleaner location + stronger TRD + cleaner reaction.
+                No automatic XAG preference.
+            </div>
+
+        </div>
+
+        <button
+            class="reset"
+            onclick="resetAll()">
             RESET
         </button>
         `;
