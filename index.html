@@ -3,583 +3,505 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XAU / XAG — Fast Direction</title>
+<title>XAU / XAG — Trade Decision</title>
+
 <style>
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  margin: 0;
-  background: #0b0d10;
-  color: #f2f3f5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 18px 14px 40px;
-}
-.header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.header h1 {
-  margin: 0;
-  font-size: 25px;
-  font-weight: 700;
-}
-.header p {
-  margin: 7px 0 0;
-  color: #9298a3;
-  font-size: 13px;
-}
-.card {
-  background: #12161b;
-  border: 1px solid #252b33;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 15px;
-}
-.asset-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-.asset-title h2 {
-  margin: 0;
-  font-size: 20px;
-}
-.score {
-  font-size: 20px;
-  font-weight: 800;
-}
-.bullish {
-  color: #35d07f;
-}
-.bearish {
-  color: #ff5c67;
-}
-.neutral {
-  color: #9aa1ac;
-}
-.status {
-  text-align: center;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 14px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .3px;
-  background: #1a1f26;
-}
-.point {
-  border-top: 1px solid #242a31;
-  padding: 12px 0;
-}
-.point:first-child {
-  border-top: none;
-}
-.point-name {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 9px;
-}
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
-}
-button {
-  border: 1px solid #303741;
-  background: #181d23;
-  color: #b8bec8;
-  border-radius: 9px;
-  min-height: 40px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-button:active {
-  transform: scale(.98);
-}
-button.active-plus {
-  background: #173b29;
-  border-color: #35d07f;
-  color: #35d07f;
-}
-button.active-minus {
-  background: #3d1b20;
-  border-color: #ff5c67;
-  color: #ff5c67;
-}
-button.active-zero {
-  background: #30353d;
-  border-color: #7d8591;
-  color: #fff;
-}
-.section-title {
-  font-size: 15px;
-  font-weight: 800;
-  margin-bottom: 11px;
-}
-.subtext {
-  color: #8e96a2;
-  font-size: 12px;
-  margin-top: -5px;
-  margin-bottom: 12px;
-}
-.choice-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-.choice-grid.three {
-  grid-template-columns: repeat(3, 1fr);
-}
-.choice-grid.five {
-  grid-template-columns: repeat(2, 1fr);
-}
-.choice.active {
-  background: #252b33;
-  border-color: #8c96a3;
-  color: #fff;
-}
-.choice.buy.active {
-  background: #173b29;
-  border-color: #35d07f;
-  color: #35d07f;
-}
-.choice.sell.active {
-  background: #3d1b20;
-  border-color: #ff5c67;
-  color: #ff5c67;
-}
-.decision {
-  text-align: center;
-  border-radius: 13px;
-  padding: 15px 10px;
-  margin-top: 14px;
-  background: #181d23;
-  border: 1px solid #303741;
-}
-.decision-title {
-  font-size: 19px;
-  font-weight: 900;
-}
-.decision-detail {
-  margin-top: 6px;
-  color: #929aa5;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.decision.buy {
-  border-color: #35d07f;
-  background: #10261b;
-}
-.decision.sell {
-  border-color: #ff5c67;
-  background: #2a1418;
-}
-.decision.danger {
-  border-color: #d4a94b;
-  background: #292316;
-}
-.rules {
-  color: #aeb5bf;
-  font-size: 12px;
-  line-height: 1.65;
-}
-.rules strong {
-  color: #f2f3f5;
-}
-.reset {
-  width: 100%;
-  margin-top: 4px;
-  min-height: 46px;
-  background: #181d23;
-  color: #c2c7cf;
-  border-color: #343b44;
-}
-.footer {
-  text-align: center;
-  color: #666e79;
-  font-size: 11px;
-  margin-top: 18px;
-}
-@media (max-width: 420px) {
-  .container {
-    padding: 14px 10px 30px;
-  }
-  .card {
-    padding: 13px;
-  }
-  .header h1 {
-    font-size: 22px;
-  }
-  button {
-    min-height: 42px;
-  }
-}
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #0b0d10;
+        color: #f1f3f5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .container {
+        max-width: 760px;
+        margin: auto;
+        padding: 18px;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 5px 0 4px;
+        font-size: 25px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #8d949e;
+        font-size: 13px;
+        margin-bottom: 22px;
+    }
+
+    .card {
+        background: #15181d;
+        border: 1px solid #292e36;
+        border-radius: 16px;
+        padding: 17px;
+        margin-bottom: 16px;
+    }
+
+    .metal-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .section {
+        margin-bottom: 18px;
+    }
+
+    .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .8px;
+        color: #8d949e;
+        margin-bottom: 9px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+    }
+
+    button {
+        border: 1px solid #303640;
+        background: #1b1f25;
+        color: #dce0e5;
+        padding: 12px 7px;
+        border-radius: 10px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    button:active {
+        transform: scale(.98);
+    }
+
+    button.selected {
+        border-color: #e5e7eb;
+        background: #30353d;
+        color: white;
+    }
+
+    .bull.selected {
+        background: #173d2a;
+        border-color: #35c979;
+        color: #68e39b;
+    }
+
+    .bear.selected {
+        background: #431c22;
+        border-color: #f05d68;
+        color: #ff8991;
+    }
+
+    .neutral.selected {
+        background: #30353d;
+    }
+
+    .final {
+        border-radius: 13px;
+        padding: 16px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 800;
+        margin-top: 5px;
+    }
+
+    .buy {
+        background: #123521;
+        border: 1px solid #2dbb6d;
+        color: #61e39a;
+    }
+
+    .sell {
+        background: #3d171c;
+        border: 1px solid #e25360;
+        color: #ff818a;
+    }
+
+    .wait {
+        background: #20242a;
+        border: 1px solid #3a4049;
+        color: #b9c0c9;
+    }
+
+    .danger {
+        background: #402c12;
+        border: 1px solid #d89a32;
+        color: #f3bd5c;
+    }
+
+    .reason {
+        text-align: center;
+        color: #8d949e;
+        font-size: 12px;
+        margin-top: 8px;
+        min-height: 16px;
+    }
+
+    .reset {
+        width: 100%;
+        margin-top: 5px;
+        background: #171a1f;
+        color: #aeb5be;
+    }
+
+    .rules {
+        color: #858c96;
+        font-size: 12px;
+        line-height: 1.7;
+        padding: 5px 3px 15px;
+    }
+
+    .rules strong {
+        color: #cfd4da;
+    }
+
+    @media (max-width: 500px) {
+        .container {
+            padding: 12px;
+        }
+
+        .buttons {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+    }
 </style>
 </head>
+
 <body>
+
 <div class="container">
-  <div class="header">
-    <h1>FAST DIRECTION + LOCATION</h1>
-    <p>XAU & XAG • 6 Points • ±4 Eligibility</p>
-  </div>
-  <div id="assets"></div>
-  <div class="card">
-    <div class="section-title">ENTRY RULE</div>
-    <div class="subtext">
-      Direction → Location → Bubble/TRD → Price Reaction
+
+    <h1>XAU / XAG Trade Decision</h1>
+    <div class="subtitle">
+        LOCATION → DIRECTION → BUBBLE → REACTION
     </div>
-    <div class="rules">
-      <strong>Valid locations:</strong><br>
-      Daily VWAP • Daily VAH • Daily VAL • Weekly VAH • Weekly VAL
-      <br><br>
-      <strong>Important:</strong><br>
-      VWAP is NOT an automatic entry.
-      A valid location + Bubble/TRD confirmation + price reaction are required.
-      <br><br>
-      <strong>Perfect location rule:</strong><br>
-      Trade the pair at the cleanest/perfect location.
-      Leave the messy pair alone.
-      <br><br>
-      <strong>Bubble danger:</strong><br>
-      Big Bubble + price moving in the same direction = confirmation.
-      Big Bubble + price NOT moving in that direction = danger.
-      <br><br>
-      <strong>Range:</strong><br>
-      Range changes the entry method, not the directional points.
-      Do not treat VWAP as an automatic trend entry during a range.
-      <br><br>
-      <strong>Major news:</strong> NO TRADE.
-      <br><br>
-      <strong>Trade management:</strong><br>
-      One trade per setup • Target 1:3 or better • No early closing • BE allowed
+
+    <div id="app"></div>
+
+    <div class="card rules">
+        <strong>RULES</strong><br>
+        1. No valid location = no trade.<br>
+        2. Direction must be clear.<br>
+        3. Bubble must confirm the direction.<br>
+        4. Price must actually react in that direction.<br>
+        5. Major gold news = no trade.<br>
+        6. One trade per setup.<br>
+        7. Target 1:3 or better.<br>
+        8. No early closing. BE only according to your plan.
     </div>
-  </div>
-  <button class="reset" onclick="resetAll()">RESET EVERYTHING</button>
-  <div class="footer">
-    Experimental Version 2 • Direction is not Entry
-  </div>
+
 </div>
+
 <script>
-const POINTS = [
-  "Daily VWAP",
-  "15m CVD",
-  "D-POC",
-  "15m Structure",
-  "W-POC",
-  "5m TRD"
+
+const metals = ["XAU", "XAG"];
+
+const locations = [
+    "NONE",
+    "Daily VWAP",
+    "Daily VAH",
+    "Daily VAL",
+    "Weekly VAH",
+    "Weekly VAL"
 ];
-const LOCATIONS = [
-  "NONE",
-  "Daily VWAP",
-  "Daily VAH",
-  "Daily VAL",
-  "Weekly VAH",
-  "Weekly VAL"
+
+const directions = [
+    "UNCLEAR",
+    "BULLISH",
+    "BEARISH"
 ];
-const TRD = [
-  "NONE",
-  "BULLISH",
-  "BEARISH"
+
+const bubbles = [
+    "NONE",
+    "BULLISH",
+    "BEARISH"
 ];
-const REACTION = [
-  "NONE",
-  "BULLISH",
-  "BEARISH",
-  "FAILED"
+
+const reactions = [
+    "WAIT",
+    "BULLISH",
+    "BEARISH",
+    "FAILED"
 ];
-const STORAGE_KEY = "xau_xag_fast_direction_v1";
-let state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
-  XAU: {
-    points: [0,0,0,0,0,0],
-    location: "NONE",
-    trd: "NONE",
-    reaction: "NONE"
-  },
-  XAG: {
-    points: [0,0,0,0,0,0],
-    location: "NONE",
-    trd: "NONE",
-    reaction: "NONE"
-  }
-};
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-function score(asset) {
-  return state[asset].points.reduce((a,b) => a+b, 0);
-}
-function direction(asset) {
-  const s = score(asset);
-  if (s >= 4) return "BULLISH";
-  if (s <= -4) return "BEARISH";
-  return "NOT ELIGIBLE";
-}
-function pointClass(value) {
-  if (value === 1) return "active-plus";
-  if (value === -1) return "active-minus";
-  return "active-zero";
-}
-function renderAssets() {
-  const container = document.getElementById("assets");
-  container.innerHTML = "";
-  ["XAU", "XAG"].forEach(asset => {
-    const s = score(asset);
-    const dir = direction(asset);
-    let scoreClass = "neutral";
-    if (s > 0) scoreClass = "bullish";
-    if (s < 0) scoreClass = "bearish";
-    let statusClass = "";
-    if (dir === "BULLISH") statusClass = "bullish";
-    if (dir === "BEARISH") statusClass = "bearish";
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="asset-title">
-        <h2>${asset}</h2>
-        <div class="score ${scoreClass}">
-          ${s > 0 ? "+" : ""}${s}/6
-        </div>
-      </div>
-      <div class="status ${statusClass}">
-        ${dir}
-      </div>
-      ${POINTS.map((name,index) => `
-        <div class="point">
-          <div class="point-name">
-            ${index + 1}. ${name}
-          </div>
-          <div class="buttons">
-            <button
-              class="${pointClass(state[asset].points[index] === 1 ? 1 : 0)}"
-              onclick="setPoint('${asset}', ${index}, 1)">
-              +1
-            </button>
-            <button
-              class="${pointClass(state[asset].points[index] === -1 ? -1 : 0)}"
-              onclick="setPoint('${asset}', ${index}, -1)">
-              −1
-            </button>
-            <button
-              class="${pointClass(state[asset].points[index] === 0 ? 0 : 1)}"
-              onclick="setPoint('${asset}', ${index}, 0)">
-              0
-            </button>
-          </div>
-        </div>
-      `).join("")}
-      <div class="point">
-        <div class="section-title">LOCATION</div>
-        <div class="choice-grid five">
-          ${LOCATIONS.map(location => `
-            <button
-              class="choice ${state[asset].location === location ? "active" : ""}"
-              onclick="setLocation('${asset}', '${location}')">
-              ${location}
-            </button>
-          `).join("")}
-        </div>
-      </div>
-      <div class="point">
-        <div class="section-title">5m BUBBLE / TRD</div>
-        <div class="choice-grid three">
-          ${TRD.map(value => `
-            <button
-              class="choice
-                ${state[asset].trd === value ? "active" : ""}
-                ${value === "BULLISH" ? "buy" : ""}
-                ${value === "BEARISH" ? "sell" : ""}
-              "
-              onclick="setTRD('${asset}', '${value}')">
-              ${value}
-            </button>
-          `).join("")}
-        </div>
-      </div>
-      <div class="point">
-        <div class="section-title">PRICE REACTION</div>
-        <div class="choice-grid">
-          ${REACTION.map(value => `
-            <button
-              class="choice
-                ${state[asset].reaction === value ? "active" : ""}
-                ${value === "BULLISH" ? "buy" : ""}
-                ${value === "BEARISH" ? "sell" : ""}
-              "
-              onclick="setReaction('${asset}', '${value}')">
-              ${value}
-            </button>
-          `).join("")}
-        </div>
-      </div>
-      ${decisionHTML(asset)}
-    `;
-    container.appendChild(card);
-  });
-}
-function decisionHTML(asset) {
-  const s = score(asset);
-  const dir = direction(asset);
-  const location = state[asset].location;
-  const trd = state[asset].trd;
-  const reaction = state[asset].reaction;
-  if (dir === "NOT ELIGIBLE") {
-    return `
-      <div class="decision">
-        <div class="decision-title neutral">
-          WAIT — NO DIRECTION
-        </div>
-        <div class="decision-detail">
-          Need +4 bullish or −4 bearish.
-        </div>
-      </div>
-    `;
-  }
-  if (location === "NONE") {
-    return `
-      <div class="decision">
-        <div class="decision-title neutral">
-          WAIT — NO LOCATION
-        </div>
-        <div class="decision-detail">
-          Direction is ${dir}, but price is not at a valid location.
-        </div>
-      </div>
-    `;
-  }
-  const alignedTRD =
-    (dir === "BULLISH" && trd === "BULLISH") ||
-    (dir === "BEARISH" && trd === "BEARISH");
-  const oppositeTRD =
-    (dir === "BULLISH" && trd === "BEARISH") ||
-    (dir === "BEARISH" && trd === "BULLISH");
-  if (trd === "NONE") {
-    return `
-      <div class="decision">
-        <div class="decision-title neutral">
-          WAIT — TRD CONFIRMATION
-        </div>
-        <div class="decision-detail">
-          ${dir} at ${location}. Wait for 5m Bubble/TRD confirmation.
-        </div>
-      </div>
-    `;
-  }
-  if (oppositeTRD) {
-    return `
-      <div class="decision danger">
-        <div class="decision-title">
-          DANGER — TRD OPPOSITE
-        </div>
-        <div class="decision-detail">
-          Direction is ${dir}, but 5m TRD is opposite.
-        </div>
-      </div>
-    `;
-  }
-  if (reaction === "NONE") {
-    return `
-      <div class="decision">
-        <div class="decision-title neutral">
-          WAIT — PRICE REACTION
-        </div>
-        <div class="decision-detail">
-          TRD confirms ${dir.toLowerCase()}. Wait for price to actually react.
-        </div>
-      </div>
-    `;
-  }
-  if (reaction === "FAILED") {
-    return `
-      <div class="decision danger">
-        <div class="decision-title">
-          DANGER — FAILED REACTION
-        </div>
-        <div class="decision-detail">
-          Large/confirmed TRD but price is not moving in the expected direction.
-          Do not force the entry.
-        </div>
-      </div>
-    `;
-  }
-  const correctReaction =
-    (dir === "BULLISH" && reaction === "BULLISH") ||
-    (dir === "BEARISH" && reaction === "BEARISH");
-  if (correctReaction && alignedTRD) {
-    const action = dir === "BULLISH" ? "BUY SETUP" : "SELL SETUP";
-    const actionClass = dir === "BULLISH" ? "buy" : "sell";
-    return `
-      <div class="decision ${actionClass}">
-        <div class="decision-title">
-          ${action}
-        </div>
-        <div class="decision-detail">
-          ${dir} ${s > 0 ? "+" : ""}${s}
-          • ${location}
-          • TRD confirmed
-          • Price reaction confirmed
-        </div>
-      </div>
-    `;
-  }
-  return `
-    <div class="decision danger">
-      <div class="decision-title">
-        WAIT — CONDITIONS NOT ALIGNED
-      </div>
-      <div class="decision-detail">
-        Do not force the trade.
-      </div>
-    </div>
-  `;
-}
-function setPoint(asset, index, value) {
-  state[asset].points[index] = value;
-  save();
-  renderAssets();
-}
-function setLocation(asset, value) {
-  state[asset].location = value;
-  save();
-  renderAssets();
-}
-function setTRD(asset, value) {
-  state[asset].trd = value;
-  save();
-  renderAssets();
-}
-function setReaction(asset, value) {
-  state[asset].reaction = value;
-  save();
-  renderAssets();
-}
-function resetAll() {
-  if (!confirm("Reset XAU and XAG completely?")) return;
-  state = {
+
+const state = JSON.parse(
+    localStorage.getItem("trade_decision_v1")
+) || {
     XAU: {
-      points: [0,0,0,0,0,0],
-      location: "NONE",
-      trd: "NONE",
-      reaction: "NONE"
+        location: "NONE",
+        direction: "UNCLEAR",
+        bubble: "NONE",
+        reaction: "WAIT"
     },
     XAG: {
-      points: [0,0,0,0,0,0],
-      location: "NONE",
-      trd: "NONE",
-      reaction: "NONE"
+        location: "NONE",
+        direction: "UNCLEAR",
+        bubble: "NONE",
+        reaction: "WAIT"
     }
-  };
-  save();
-  renderAssets();
+};
+
+function save() {
+    localStorage.setItem(
+        "trade_decision_v1",
+        JSON.stringify(state)
+    );
 }
-renderAssets();
+
+function button(label, type, metal, field, value) {
+
+    const selected =
+        state[metal][field] === value
+            ? "selected"
+            : "";
+
+    return `
+        <button
+            class="${type} ${selected}"
+            onclick="setValue('${metal}','${field}','${value}')">
+            ${label}
+        </button>
+    `;
+}
+
+function renderMetal(metal) {
+
+    const s = state[metal];
+
+    return `
+    <div class="card">
+
+        <div class="metal-title">${metal}</div>
+
+        <div class="section">
+            <div class="label">1. Location</div>
+
+            <div class="buttons">
+                ${locations.map(x =>
+                    button(
+                        x,
+                        x === "NONE" ? "neutral" : "",
+                        metal,
+                        "location",
+                        x
+                    )
+                ).join("")}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">2. Direction</div>
+
+            <div class="buttons">
+                ${directions.map(x =>
+                    button(
+                        x,
+                        x === "BULLISH"
+                            ? "bull"
+                            : x === "BEARISH"
+                                ? "bear"
+                                : "neutral",
+                        metal,
+                        "direction",
+                        x
+                    )
+                ).join("")}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">3. Bubble / TRD</div>
+
+            <div class="buttons">
+                ${bubbles.map(x =>
+                    button(
+                        x,
+                        x === "BULLISH"
+                            ? "bull"
+                            : x === "BEARISH"
+                                ? "bear"
+                                : "neutral",
+                        metal,
+                        "bubble",
+                        x
+                    )
+                ).join("")}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">4. Price Reaction</div>
+
+            <div class="buttons">
+                ${reactions.map(x =>
+                    button(
+                        x,
+                        x === "BULLISH"
+                            ? "bull"
+                            : x === "BEARISH"
+                                ? "bear"
+                                : "neutral",
+                        metal,
+                        "reaction",
+                        x
+                    )
+                ).join("")}
+            </div>
+        </div>
+
+        ${decision(metal)}
+
+    </div>
+    `;
+}
+
+function decision(metal) {
+
+    const s = state[metal];
+
+    let result = "WAIT";
+    let className = "wait";
+    let reason = "Complete the setup";
+
+    if (s.location === "NONE") {
+
+        result = "WAIT";
+        reason = "No valid location";
+
+    } else if (s.direction === "UNCLEAR") {
+
+        result = "WAIT";
+        reason = "Direction unclear";
+
+    } else if (s.bubble === "NONE") {
+
+        result = "WAIT";
+        reason = "Waiting for Bubble confirmation";
+
+    } else if (s.bubble !== s.direction) {
+
+        result = "DANGER";
+        className = "danger";
+        reason = "Bubble disagrees with direction";
+
+    } else if (s.reaction === "WAIT") {
+
+        result = "WAIT";
+        reason = "Waiting for price reaction";
+
+    } else if (s.reaction === "FAILED") {
+
+        result = "DANGER";
+        className = "danger";
+        reason = "Reaction failed";
+
+    } else if (s.reaction !== s.direction) {
+
+        result = "WAIT";
+        reason = "Price reaction disagrees";
+
+    } else if (
+        s.direction === "BULLISH" &&
+        s.bubble === "BULLISH" &&
+        s.reaction === "BULLISH"
+    ) {
+
+        result = "BUY SETUP";
+        className = "buy";
+        reason = "Direction + location + Bubble + reaction aligned";
+
+    } else if (
+        s.direction === "BEARISH" &&
+        s.bubble === "BEARISH" &&
+        s.reaction === "BEARISH"
+    ) {
+
+        result = "SELL SETUP";
+        className = "sell";
+        reason = "Direction + location + Bubble + reaction aligned";
+    }
+
+    return `
+        <div class="final ${className}">
+            ${result}
+        </div>
+        <div class="reason">
+            ${reason}
+        </div>
+    `;
+}
+
+function setValue(metal, field, value) {
+
+    state[metal][field] = value;
+
+    /*
+      If direction changes, old Bubble/Reaction
+      shouldn't automatically create a trade.
+    */
+    if (field === "direction") {
+        state[metal].bubble = "NONE";
+        state[metal].reaction = "WAIT";
+    }
+
+    if (field === "location") {
+        state[metal].reaction = "WAIT";
+    }
+
+    if (field === "bubble") {
+        state[metal].reaction = "WAIT";
+    }
+
+    save();
+    render();
+}
+
+function resetAll() {
+
+    state.XAU = {
+        location: "NONE",
+        direction: "UNCLEAR",
+        bubble: "NONE",
+        reaction: "WAIT"
+    };
+
+    state.XAG = {
+        location: "NONE",
+        direction: "UNCLEAR",
+        bubble: "NONE",
+        reaction: "WAIT"
+    };
+
+    save();
+    render();
+}
+
+function render() {
+
+    document.getElementById("app").innerHTML =
+        metals.map(renderMetal).join("") +
+        `
+        <button class="reset" onclick="resetAll()">
+            RESET
+        </button>
+        `;
+}
+
+render();
+
 </script>
+
 </body>
 </html>
